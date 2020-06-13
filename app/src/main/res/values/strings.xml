@@ -1,0 +1,118 @@
+<resources>
+    <string name="app_name">JojoStream</string>
+    <string name="publisher_id">pub-3447169368463700</string>
+
+    <string name="facebook_app_id">298225738005843</string>
+    <string name="fb_login_protocol_scheme">fb298225738005843</string>
+
+
+    <string name="download_foler">JojoStream</string>
+    <string name="panel_url">https://api.jojostream.com/</string>
+    <string-array name="orders_list">
+        <item>Last Added</item>
+        <item>By Rating</item>
+        <item>By IMDb Rating</item>
+        <item>By Title</item>
+        <item>By Year</item>
+        <item>By Views</item>
+    </string-array>
+
+    <string name="media_route_menu_title">Regarder sur</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Paramètres</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="try_again">Veuillez réessayer</string>
+    <string name="error_server">Vérifiez votre connexion Internet</string>
+    <string name="no_source_available">Aucune source disponible pour ce contenu</string>
+    <string name="cancel">Annuler</string>
+    <string name="submit">Soummettre</string>
+    <string name="rating_done">Votre évaluation a été envoyée avec succès</string>
+    <string name="write_comment">Écrire un commentaire</string>
+    <string name="comment_hidden">Masqué</string>
+    <string name="now_time">Maintenant</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
+    <string name="loading_subtitles">Chargement des sous-titres ... </string>
+    <string name="for_you">Suggestions</string>
+    <string name="search_about_actors">Recherche un film, une série, une chaine TV</string>
+    <string name="account_disabled">Ce compte a été désactivé</string>
+    <string name="operation_progress">Opérations en cours, veuillez patienter.</string>
+    <string name="get_this_movie_here">Obtenez ce film à partir du lien ci-dessous:</string>
+    <string name="get_this_tv_show_here">Obtenez cette série à partir du lien ci-dessous:</string>
+
+    <string name="get_this_serie_here">Obtenez plus de séries télévisées ici</string>
+    <string name="get_this_channel_here">Obtenez cette chaîne à partir du lien ci-dessous</string>
+
+    <string name="file_has_been_downloaded">Le fichier a été téléchargé avec succès</string>
+    <string name="Downloaded">Téléchargé avec succès</string>
+    <string name="exit">Quitter</string>
+    <string name="policy_privacy">Politique de confidentialité</string>
+    <string name="action_rate">Noter l\'app</string>
+    <string name="action_support"><![CDATA[Demande ou Contact]]></string>
+    <string name="share_this_app">Partager l\'App</string>
+    <string name="my_profile">Mon Profile</string>
+    <string name="Logout">Se déconnecter</string>
+    <string name="login">Connexion / Inscription</string>
+    <string name="subscribe">Souscrire</string>
+    <string name="later">Plus tard</string>
+    <string name="please_login">Connectez-vous à votre compte</string>
+    <string name="message_logout">Vous êtes déconnecté avec succès</string>
+    <string name="hint_name">Noms</string>
+    <string name="update_my_profile">METTRE À JOUR MON PROFIL</string>
+    <string name="error_short_value">Cette valeur est très courte veuillez entrer la valeur correcte</string>
+    <string name="infos_updated_successfully">vos infos ont été mises à jour avec succès</string>
+    <string name="rate_this_channel">Évaluez cette chaîne</string>
+    <string name="rate_this_serie_tv">Évaluez cette série TV</string>
+    <string name="rate_this_movie">Notez ce film</string>
+    <string name="channel_added_fav">Cette chaîne a été ajoutée à votre liste</string>
+    <string name="channel_removed_fav">Cette chaîne a été supprimée de votre liste</string>
+    <string name="website">Site web</string>
+    <string name="update_now">Mettez à jour maintenant</string>
+    <string name="skip">Ignorer</string>
+    <string name="title_notification">Activer la notification push</string>
+    <string name="label_notification">Recevoir une notification push</string>
+    <string name="clear_cache">Vider le cache</string>
+    <string name="label_cache">Effacez les images mises en cache localement. Actuellement:</string>
+    <string name="contact_us">Nous contacter</string>
+    <string name="version_label">Version</string>
+    <string name="enable_subtitles">Activer les sous-titres</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_message">Votre message</string>
+    <string name="send_support">Envoyer le message</string>
+    <string name="message_sended">Le message a été envoyé avec succès</string>
+    <string name="error_mail_valide">Veuillez saisir un e-mail valide</string>
+
+    <string name="title_slide_1">Bienvenue sur JoJoStream</string>
+    <string name="description_slide_1">Merci d\'avoir téléchargé l\'application Flix, profitez-en avec cette application Android incroyable avec un contenu cool.</string>
+
+    <string name="title_slide_2">Regardez tout ici</string>
+    <string name="description_slide_2">Regardez tout le contenu au même endroit: films, séries télévisées, chaînes de télévision en direct et plus encore</string>
+
+    <string name="title_slide_3">Utiliser des sous-titres</string>
+    <string name="description_slide_3">Regardez vos films / séries télévisées préférés dans votre langue d\'origine en utilisant des sous-titres</string>
+
+    <string name="title_slide_4">Téléchargez et regardez plus tard</string>
+    <string name="description_slide_4">Téléchargez les films / séries, téléchargez les sur votre appareil pour le regarder plus tard</string>
+
+    <string name="title_slide_5">Regarder en plein écran</string>
+    <string name="description_slide_5">Diffusez n\'importe quel contenu Films / Séries TV et chaîne TV en direct sur votre téléviseur et regardez confortablement</string>
+
+    <string name="dialog_text_no_ads_title">Désactiver les annonces</string>
+    <string name="dialog_text_no_premium_wallpapers_title">Contenu de qualité</string>
+    <string name="dialog_text_no_premium_wallpapers_description">Obtenez des autocollants illimités</string>
+    <string name="dialog_text_no_ads_description">Utilisez l\'application plus gratuitement sans publicité</string>
+    <string name="description_subsribte2">With our pack. You can enjoy an ad-free experiance . and focus on the  essential!</string>
+    <string name="description_subsribte">Avec notre pack. Vous pouvez profiter d\'une expérience sans publicité. et se concentrer sur l\'essentiel!</string>
+    <string name="download_premium_content">Télécharger du contenu Premium</string>
+    <string name="play_premium_content">Lire du contenu Premium</string>
+    <string name="use_content_for_free">Vous pouvez maintenant utiliser ce contenu premium gratuitement</string>
+    <string name="AD_MOB_ENABLED_BANNER">true</string>
+
+</resources>

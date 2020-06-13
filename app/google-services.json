@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "63138131576",
+    "firebase_url": "https://jojostream-a9d94.firebaseio.com",
+    "project_id": "jojostream-a9d94",
+    "storage_bucket": "jojostream-a9d94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63138131576:android:8fd70e6eb46cd72ba0478d",
+        "android_client_info": {
+          "package_name": "com.tech7.jojostream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63138131576-v6ql0h7k8j4aldeteauo6rcets9l2miq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tech7.jojostream",
+            "certificate_hash": "b15fe3818885a729dd8a80f1f525cb44d008da8e"
+          }
+        },
+        {
+          "client_id": "63138131576-ru7nsa39otd86lsr8jmonho1jn7tq23h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXSb3idqsRcjgvGzsL8NRGwX0pcwkM6cE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63138131576-ru7nsa39otd86lsr8jmonho1jn7tq23h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

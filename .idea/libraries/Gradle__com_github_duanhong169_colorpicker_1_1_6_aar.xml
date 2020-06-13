@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.duanhong169:colorpicker:1.1.6@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-colorpicker-1.1.6.aar/2063ffb65c003af973234acff9736d7e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-colorpicker-1.1.6.aar/2063ffb65c003af973234acff9736d7e/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.duanhong169/colorpicker/1.1.6/752d0b70fe2ceb06be973d25b2e8f80a155d2b48/colorpicker-1.1.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
