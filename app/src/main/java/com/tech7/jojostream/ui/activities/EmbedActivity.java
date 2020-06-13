@@ -1,6 +1,7 @@
 package com.tech7.jojostream.ui.activities;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -165,7 +166,12 @@ public class EmbedActivity extends AppCompatActivity {
     class myWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return super.shouldOverrideUrlLoading(view, url);    //To change body of overridden methods use File | Settings | File Templates.
+
+            if (Uri.parse(url).getHost().contains("embed")) {
+                return false;
+            }
+
+            return true;
         }
     }
 }
