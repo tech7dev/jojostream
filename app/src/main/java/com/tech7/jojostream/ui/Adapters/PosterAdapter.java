@@ -115,6 +115,9 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case 1:
 
                 final PosterHolder holder = (PosterHolder) viewHolder;
+
+                holder.text_view_item_poster_title.setText(posterList.get(position).getTitle());
+
                 Picasso.with(activity).load(posterList.get(position).getImage()).placeholder(R.drawable.poster_placeholder).into(holder.image_view_item_poster_image);
                 if (deletable)
                     holder.relative_layout_item_poster_delete.setVisibility(View.VISIBLE);
@@ -347,11 +350,13 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return posterList.size();
         }
         public class PosterHolder extends RecyclerView.ViewHolder {
+            private TextView text_view_item_poster_title;
             private ImageView image_view_item_poster_delete;
             public ImageView image_view_item_poster_image ;
             public RelativeLayout relative_layout_item_poster_delete ;
             public PosterHolder(View itemView) {
                 super(itemView);
+                this.text_view_item_poster_title = (TextView) itemView.findViewById(R.id.text_view_item_poster_title);
                 this.image_view_item_poster_image =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_image);
                 this.relative_layout_item_poster_delete =  (RelativeLayout) itemView.findViewById(R.id.relative_layout_item_poster_delete);
                 this.image_view_item_poster_delete =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_delete);

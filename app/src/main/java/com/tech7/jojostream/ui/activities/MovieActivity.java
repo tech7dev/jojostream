@@ -567,6 +567,10 @@ public class MovieActivity extends AppCompatActivity {
         }else{
             floating_action_button_activity_movie_comment.setVisibility(View.GONE);
         }
+
+        //my code
+        if (poster.getSources().size()==1)
+            linear_layout_movie_activity_download.setVisibility(View.INVISIBLE);
     }
 
     private void initAction() {
@@ -611,7 +615,6 @@ public class MovieActivity extends AppCompatActivity {
         linear_layout_movie_activity_download.setOnClickListener(v->{
             Intent intent = new Intent(MovieActivity.this, DownloadActivity.class);
             intent.putExtra(DownloadActivity.EXTRA_URL, poster.getSources().get(1).getUrl());
-            intent.putExtra(DownloadActivity.EXTRA_TITLE, poster.getTitle());
             startActivity(intent);
             //finish();
 

@@ -13,7 +13,6 @@ import com.tech7.jojostream.R;
 public class DownloadActivity extends AppCompatActivity {
 
     private WebView webView;
-    public static final String EXTRA_TITLE = "com.tech7.jojostream.EXTRA_TITLE";  //title
     public static final String EXTRA_URL = "com.tech7.jojostream.EXTRA_URL";  //url
 
     @Override
@@ -24,8 +23,6 @@ public class DownloadActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_URL)) {
             Log.d("DownloadActivity-URL", intent.getStringExtra(EXTRA_URL));
-            if (intent.hasExtra(EXTRA_TITLE))
-                setTitle(intent.getStringExtra(EXTRA_TITLE));
 
             String url = intent.getStringExtra(EXTRA_URL);
             webView = (WebView) findViewById(R.id.webView);

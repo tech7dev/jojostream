@@ -98,7 +98,7 @@
                 app:srcCompat="@drawable/ic_file_download"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

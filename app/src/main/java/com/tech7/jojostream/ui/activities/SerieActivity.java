@@ -1113,6 +1113,12 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
             return;
         }
 
+        //my code
+        else if (playableList.size()==2){
+            playSource(0);
+            return;
+        }
+
         play_source_dialog= new Dialog(this,
                 R.style.Theme_Dialog);
         play_source_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -1524,10 +1530,20 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
             }
 
             holder.text_view_item_episode_description.setText(episodeList.get(position).getDescription());
+
+            //my code
+            if(episodeList.get(position).getSources().size() == 1)
+                holder.image_view_item_episode_download.setVisibility(View.INVISIBLE);
             holder.image_view_item_episode_download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    setDownloadableList(episodeList.get(position));
+                    //setDownloadableList(episodeList.get(position));
+
+                    //my code
+                    Intent intent = new Intent(SerieActivity.this, DownloadActivity.class);
+                    intent.putExtra(DownloadActivity.EXTRA_URL, episodeList.get(position).getSources().get(1).getUrl());
+                    startActivity(intent);
+                    //finish();
                 }
             });
             holder.image_view_item_episode_play.setOnClickListener(new View.OnClickListener() {
@@ -1636,12 +1652,12 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
             favorites_list.add(poster);
             Hawk.put("my_list",favorites_list);
             image_view_activity_serie_my_list.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
-            Toasty.info(this, "This serie has been added to your list", Toast.LENGTH_SHORT).show();
+            Toasty.info(this, "Cette série a été ajouté à vos favoris", Toast.LENGTH_SHORT).show();
         }else{
             favorites_list.remove(fav_position);
             Hawk.put("my_list",favorites_list);
             image_view_activity_serie_my_list.setImageDrawable(getResources().getDrawable(R.drawable.ic_check));
-            Toasty.warning(this, "This serie has been removed from your list", Toast.LENGTH_SHORT).show();
+            Toasty.warning(this, "Cette série a été rétirée de vos favoris", Toast.LENGTH_SHORT).show();
         }
     }
     public void share(){
@@ -1784,9 +1800,6 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
     public void showDialog(Boolean withAds){
         this.dialog = new Dialog(this,
                 R.style.Theme_Dialog);
-
-
-
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
