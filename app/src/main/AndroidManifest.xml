@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tech7.jojostream">
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,20 +11,22 @@
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="com.android.vending.BILLING" />
 
-<!--    android:icon="@mipmap/ic_launcher"-->
     <application
-        android:name="com.tech7.jojostream.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/logo3"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         tools:ignore="GoogleAppIndexingWarning">
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -42,13 +42,16 @@
             android:value="@string/facebook_app_id" />
 
         <service
-            android:name="com.tech7.jojostream.services.DownloadService"
+            android:name=".services.DownloadService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name="com.tech7.jojostream.services.ToastService"
+            android:name=".services.ToastService"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".ui.activities.DownloadActivity"
+            android:theme="@style/AppThemeActionDestils"></activity>
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -67,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tech7.jojostream.ui.activities.PlayerActivity"
+            android:name=".ui.activities.PlayerActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
@@ -76,14 +79,14 @@
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
             android:value="${applicationId}.cast.CastOptionsProvider" />
 
-        <service android:name="com.tech7.jojostream.services.NotifFirebaseMessagingService">
+        <service android:name=".services.NotifFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <activity
-            android:name="com.tech7.jojostream.cast.ExpandedControlsActivity"
+            android:name=".cast.ExpandedControlsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -97,30 +100,30 @@
                 android:launchMode="singleTask"
                 android:value="com.tech7.jojostream.ui.activities.PlayerActivity" />
         </activity>
-
         <activity
-            android:name="com.tech7.jojostream.ui.activities.IntroActivity"
+            android:name=".ui.activities.IntroActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.MovieActivity"
+            android:name=".ui.activities.MovieActivity"
             android:theme="@style/AppThemeActionDestils" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.HomeActivity"
+            android:name=".ui.activities.HomeActivity"
             android:theme="@style/AppThemeActionDestils" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.YoutubeActivity"
+            android:name=".ui.activities.YoutubeActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.ActorsActivity"
+            android:name=".ui.activities.ActorsActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.ActorActivity"
+            android:name=".ui.activities.ActorActivity"
             android:theme="@style/AppThemeActionDestils" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:theme="@style/Theme.LoginDialog" />
-        <activity android:name="com.tech7.jojostream.ui.activities.LoadActivity"
+        <activity
+            android:name=".ui.activities.LoadActivity"
             android:theme="@style/AppThemeActionDestils">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -137,31 +140,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tech7.jojostream.ui.activities.GenreActivity"
+            android:name=".ui.activities.GenreActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.TopActivity"
+            android:name=".ui.activities.TopActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.MyListActivity"
+            android:name=".ui.activities.MyListActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.SerieActivity"
+            android:name=".ui.activities.SerieActivity"
             android:theme="@style/AppThemeActionDestils" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.EditActivity"
+            android:name=".ui.activities.EditActivity"
             android:theme="@style/Theme.ProfileDialog" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.ChannelActivity"
+            android:name=".ui.activities.ChannelActivity"
             android:theme="@style/AppThemeActionDestils" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.CategoryActivity"
+            android:name=".ui.activities.CategoryActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.SearchActivity"
+            android:name=".ui.activities.SearchActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:theme="@style/AppThemeActionDestils">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -170,16 +173,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tech7.jojostream.ui.activities.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:theme="@style/AppThemeNoAction" />
         <activity
-            android:name="com.tech7.jojostream.ui.activities.SupportActivity"
+            android:name=".ui.activities.SupportActivity"
             android:theme="@style/Theme.ProfileDialog" />
-        <activity android:name="com.tech7.jojostream.ui.activities.PolicyActivity"
-            android:theme="@style/AppThemeNoAction"/>
-        <activity android:name="com.tech7.jojostream.ui.activities.EmbedActivity"
+        <activity
+            android:name=".ui.activities.PolicyActivity"
+            android:theme="@style/AppThemeNoAction" />
+        <activity
+            android:name=".ui.activities.EmbedActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme"  ></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

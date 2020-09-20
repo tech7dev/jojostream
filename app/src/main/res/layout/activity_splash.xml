@@ -9,7 +9,7 @@
     <ImageView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/logo3"
+        android:src="@drawable/logo"
         android:layout_width="170dp"
         android:layout_height="170dp" />
     <com.greenfrvr.rubberloader.RubberLoaderView

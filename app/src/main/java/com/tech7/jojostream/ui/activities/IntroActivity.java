@@ -72,7 +72,7 @@ public class IntroActivity extends AppCompatActivity {
         this.linear_layout_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (text_view_next_done.getText().equals("DONE")){
+                if (text_view_next_done.getText().equals("DEMARRER")){
                     Intent intent = new Intent(IntroActivity.this,HomeActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -94,9 +94,9 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position+1==slideList.size()){
-                    text_view_next_done.setText("DONE");
+                    text_view_next_done.setText("DEMARRER");
                 }else{
-                    text_view_next_done.setText("NEXT");
+                    text_view_next_done.setText("SUIVANT");
                 }
             }
 

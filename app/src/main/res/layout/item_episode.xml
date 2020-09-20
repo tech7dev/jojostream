@@ -85,6 +85,7 @@
                     android:layout_width="55dp"
                     android:layout_height="30dp" />
 
+            <!-- Button Download -->
             <ImageView
                 android:layout_marginTop="10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -96,7 +97,8 @@
                 android:padding="10dp"
                 app:srcCompat="@drawable/ic_file_download"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:visibility="gone"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

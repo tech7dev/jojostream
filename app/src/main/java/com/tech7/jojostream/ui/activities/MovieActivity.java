@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -608,18 +609,24 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
         linear_layout_movie_activity_download.setOnClickListener(v->{
-            if (checkSUBSCRIBED()){
-                showSourcesDownloadDialog();
-            }else{
-                if (poster.getDownloadas().equals("2")){
-                    showDialog(false);
-                }else if(poster.getDownloadas().equals("3") ){
-                    showDialog(true);
-                    operationAfterAds = 100;
-                }else{
-                    showSourcesDownloadDialog();
-                }
-            }
+            Intent intent = new Intent(MovieActivity.this, DownloadActivity.class);
+            intent.putExtra(DownloadActivity.EXTRA_URL, poster.getSources().get(1).getUrl());
+            intent.putExtra(DownloadActivity.EXTRA_TITLE, poster.getTitle());
+            startActivity(intent);
+            //finish();
+
+//            if (checkSUBSCRIBED()){
+//                showSourcesDownloadDialog();
+//            }else{
+//                if (poster.getDownloadas().equals("2")){
+//                    showDialog(false);
+//                }else if(poster.getDownloadas().equals("3") ){
+//                    showDialog(true);
+//                    operationAfterAds = 100;
+//                }else{
+//                    showSourcesDownloadDialog();
+//                }
+//            }
         });
         floating_action_button_activity_movie_comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1005,6 +1012,12 @@ public class MovieActivity extends AppCompatActivity {
             return;
         }
 
+        //my code
+        else if (poster.getSources().size()==2){
+            playSource(0);
+            return;
+        }
+
         play_source_dialog= new Dialog(this,
                 R.style.Theme_Dialog);
         play_source_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -1054,7 +1067,6 @@ public class MovieActivity extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         this.text_view_activity_movie_imdb_rating =  (TextView) findViewById(R.id.text_view_activity_movie_imdb_rating);
         this.linear_layout_activity_movie_rating =  (LinearLayout) findViewById(R.id.linear_layout_activity_movie_rating);
@@ -1138,7 +1150,6 @@ public class MovieActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -1162,8 +1173,6 @@ public class MovieActivity extends AppCompatActivity {
                 R.id.media_route_menu_item);
         return true;
     }
-
-
 
 
     private MediaInfo getSourceMediaInfos(int position) {
@@ -1592,8 +1601,6 @@ public class MovieActivity extends AppCompatActivity {
     public void showDialog(Boolean withAds){
         this.dialog = new Dialog(this,
                 R.style.Theme_Dialog);
-
-
 
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

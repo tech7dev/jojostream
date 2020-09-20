@@ -96,6 +96,7 @@
                 app:bt_colorActive="@color/pruple"
                 app:bt_shape="@drawable/bg_background_pruple"
                 app:bt_icon="@drawable/ic_television_box"
+                android:visibility="gone"
                 app:bt_title="LiveTV" />
 
             <com.gauravk.bubblenavigation.BubbleToggleView
@@ -108,6 +109,7 @@
                 app:bt_colorActive="@color/orange"
                 app:bt_shape="@drawable/bg_background_orange"
                 app:bt_icon="@drawable/ic_file_download"
+                android:visibility="gone"
                 app:bt_title="Téléchargements" />
         </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
 

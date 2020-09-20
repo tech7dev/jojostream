@@ -296,7 +296,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
-                                    android:text="Share"
+                                    android:text="Partager"
                                     android:textColor="@color/white"
                                     android:textSize="11dp"
                                     android:textStyle="bold" />
@@ -334,7 +334,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
-                                    android:text="My List"
+                                    android:text="Mes Favoris"
                                     android:textColor="@color/white"
                                     android:textSize="11dp"
                                     android:textStyle="bold" />
@@ -372,7 +372,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
-                                    android:text="Rate"
+                                    android:text="Noter"
                                     android:textColor="@color/white"
                                     android:textSize="11dp"
                                     android:textStyle="bold" />
@@ -429,7 +429,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
-                                android:text="SEASONS"
+                                android:text="SAISONS"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="19dp"
                                 android:textStyle="bold" />

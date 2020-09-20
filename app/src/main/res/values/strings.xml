@@ -9,12 +9,12 @@
     <string name="download_foler">JojoStream</string>
     <string name="panel_url">https://api.jojostream.com/</string>
     <string-array name="orders_list">
-        <item>Last Added</item>
-        <item>By Rating</item>
-        <item>By IMDb Rating</item>
-        <item>By Title</item>
-        <item>By Year</item>
-        <item>By Views</item>
+        <item>Récemment ajoutés</item>
+        <item>Par Votes</item>
+        <item>Par Votes IMDb</item>
+        <item>Par titre</item>
+        <item>Par année</item>
+        <item>Par vues</item>
     </string-array>
 
     <string name="media_route_menu_title">Regarder sur</string>
@@ -89,20 +89,20 @@
     <string name="message_sended">Le message a été envoyé avec succès</string>
     <string name="error_mail_valide">Veuillez saisir un e-mail valide</string>
 
-    <string name="title_slide_1">Bienvenue sur JoJoStream</string>
-    <string name="description_slide_1">Merci d\'avoir téléchargé l\'application Flix, profitez-en avec cette application Android incroyable avec un contenu cool.</string>
+    <string name="title_slide_1">Bienvenue</string>
+    <string name="description_slide_1">Merci d\'avoir téléchargé l\'application JoJoStream, profitez-en à regarder gratuitement des Films et Séries populaires.</string>
 
     <string name="title_slide_2">Regardez tout ici</string>
-    <string name="description_slide_2">Regardez tout le contenu au même endroit: films, séries télévisées, chaînes de télévision en direct et plus encore</string>
+    <string name="description_slide_2">Regardez tout le contenu au même endroit: Films, Séries TV, Chaînes TV en direct et plus encore</string>
 
-    <string name="title_slide_3">Utiliser des sous-titres</string>
-    <string name="description_slide_3">Regardez vos films / séries télévisées préférés dans votre langue d\'origine en utilisant des sous-titres</string>
+    <string name="title_slide_3">Utiliser \n des sous-titres</string>
+    <string name="description_slide_3">Regardez vos Films / Séries TV préférés dans votre langue d\'origine en utilisant des sous-titres</string>
 
-    <string name="title_slide_4">Téléchargez et regardez plus tard</string>
-    <string name="description_slide_4">Téléchargez les films / séries, téléchargez les sur votre appareil pour le regarder plus tard</string>
+    <string name="title_slide_4">Téléchargez \n et regardez plus tard</string>
+    <string name="description_slide_4">Téléchargez des films / séries, sur votre appareil pour le regarder plus tard</string>
 
-    <string name="title_slide_5">Regarder en plein écran</string>
-    <string name="description_slide_5">Diffusez n\'importe quel contenu Films / Séries TV et chaîne TV en direct sur votre téléviseur et regardez confortablement</string>
+    <string name="title_slide_5">Regarder \n en plein écran</string>
+    <string name="description_slide_5">Diffusez n\'importe quel Film / Série TV et chaîne TV sur votre téléviseur afin de regardez confortablement</string>
 
     <string name="dialog_text_no_ads_title">Désactiver les annonces</string>
     <string name="dialog_text_no_premium_wallpapers_title">Contenu de qualité</string>
