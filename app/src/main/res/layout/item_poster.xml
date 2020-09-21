@@ -51,12 +51,17 @@
     </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/text_view_item_poster_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
             android:textColor="@color/white"
             android:text="Mission Impossible"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:layout_below="@id/image_view_item_poster_image"/>
     </LinearLayout>
 </LinearLayout>

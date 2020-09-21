@@ -2,6 +2,7 @@ package com.tech7.jojostream.ui.Adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,6 +118,9 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 final PosterHolder holder = (PosterHolder) viewHolder;
 
                 holder.text_view_item_poster_title.setText(posterList.get(position).getTitle());
+                holder.text_view_item_poster_title.setSelected(true);
+                //holder.text_view_item_poster_title.setMovementMethod(new ScrollingMovementMethod());
+                //holder.text_view_item_poster_title.setHorizontallyScrolling(true);
 
                 Picasso.with(activity).load(posterList.get(position).getImage()).placeholder(R.drawable.poster_placeholder).into(holder.image_view_item_poster_image);
                 if (deletable)
