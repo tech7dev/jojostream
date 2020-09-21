@@ -119,8 +119,8 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 holder.text_view_item_poster_title.setText(posterList.get(position).getTitle());
                 holder.text_view_item_poster_title.setSelected(true);
-                //holder.text_view_item_poster_title.setMovementMethod(new ScrollingMovementMethod());
-                //holder.text_view_item_poster_title.setHorizontallyScrolling(true);
+                holder.year_poster.setText(posterList.get(position).getYear());
+                holder.year_poster.bringToFront();
 
                 Picasso.with(activity).load(posterList.get(position).getImage()).placeholder(R.drawable.poster_placeholder).into(holder.image_view_item_poster_image);
                 if (deletable)
@@ -355,12 +355,14 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         public class PosterHolder extends RecyclerView.ViewHolder {
             private TextView text_view_item_poster_title;
+            private TextView year_poster;
             private ImageView image_view_item_poster_delete;
             public ImageView image_view_item_poster_image ;
             public RelativeLayout relative_layout_item_poster_delete ;
             public PosterHolder(View itemView) {
                 super(itemView);
                 this.text_view_item_poster_title = (TextView) itemView.findViewById(R.id.text_view_item_poster_title);
+                this.year_poster = (TextView) itemView.findViewById(R.id.year_poster);
                 this.image_view_item_poster_image =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_image);
                 this.relative_layout_item_poster_delete =  (RelativeLayout) itemView.findViewById(R.id.relative_layout_item_poster_delete);
                 this.image_view_item_poster_delete =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_delete);

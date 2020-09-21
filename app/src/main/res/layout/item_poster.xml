@@ -1,67 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
-        app:cardPreventCornerOverlap="false"
-        app:cardElevation="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/image_view_item_poster_image"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/poster_placeholder"
+
+            <TextView
+                android:id="@+id/year_poster"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_alignEnd="@id/layout_poster"
+                android:layout_alignRight="@id/layout_poster"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:background="@drawable/bg_year"
+                android:textColor="@color/white"
+                android:text="2020" />
+
+            <LinearLayout
+                android:id="@+id/layout_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/image_view_item_poster_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/poster_placeholder" />
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0.1">
+
+                    <TextView
+                        android:id="@+id/text_view_item_poster_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_below="@id/image_view_item_poster_image"
+                        android:layout_marginLeft="4dp"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Mission Impossible"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
 
             <RelativeLayout
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/bg_delete_item"
                 android:id="@+id/relative_layout_item_poster_delete"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_delete_item">
+
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/image_view_item_poster_delete"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_delete"
-                    android:padding="7dp"
                     android:layout_width="40dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="7dp"
+                    android:tint="@color/white"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_delete" />
             </RelativeLayout>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-        <TextView
-            android:id="@+id/text_view_item_poster_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit ="marquee_forever"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:textColor="@color/white"
-            android:text="Mission Impossible"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_below="@id/image_view_item_poster_image"/>
-    </LinearLayout>
+
 </LinearLayout>
