@@ -47,8 +47,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:bnc_mode="inside"
-            app:hideOnScroll="true"
-
+            app:hideOnScroll="false"
             >
             <com.gauravk.bubblenavigation.BubbleToggleView
                 android:id="@+id/l_item_home"

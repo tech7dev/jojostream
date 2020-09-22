@@ -73,7 +73,7 @@ public class SeriesFragment extends Fragment {
     private Integer item = 0 ;
     private Button button_try_again;
     private int genreSelected = 0;
-    private String orderSelected = "created";
+    private String orderSelected = "year";
 
     private boolean firstLoadGenre = true;
     private boolean firstLoadOrder = true;

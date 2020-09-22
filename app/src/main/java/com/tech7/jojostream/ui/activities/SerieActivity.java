@@ -773,33 +773,36 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
     }
 
     public void playTrailer(){
-        if (poster.getTrailer().getType().equals("youtube")){
-            Intent intent = new Intent(SerieActivity.this,YoutubeActivity.class);
-            intent.putExtra("url",poster.getTrailer().getUrl());
-            startActivity(intent);
-            return;
-        }
-        if (poster.getTrailer().getType().equals("embed")){
-            Intent intent = new Intent(SerieActivity.this,EmbedActivity.class);
-            intent.putExtra("url",poster.getTrailer().getUrl());
-            startActivity(intent);
-            return;
-        }
+        try {
+            if (poster.getTrailer().getType().equals("youtube")){
+                Intent intent = new Intent(SerieActivity.this,YoutubeActivity.class);
+                intent.putExtra("url",poster.getTrailer().getUrl());
+                startActivity(intent);
+                return;
+            }
+            if (poster.getTrailer().getType().equals("embed")){
+                Intent intent = new Intent(SerieActivity.this,EmbedActivity.class);
+                intent.putExtra("url",poster.getTrailer().getUrl());
+                startActivity(intent);
+                return;
+            }
 
-        if (mCastSession == null) {
-            mCastSession = mSessionManager.getCurrentCastSession();
-        }
-        if (mCastSession != null) {
-            loadRemoteMedia(0, true);
-        } else {
-            Intent intent = new Intent(SerieActivity.this,PlayerActivity.class);
-            intent.putExtra("url",poster.getTrailer().getUrl());
-            intent.putExtra("type",poster.getTrailer().getType());
-            intent.putExtra("image",poster.getImage());
-            intent.putExtra("title",poster.getTitle());
-            intent.putExtra("subtitle",poster.getTitle() + " Trailer");
-            startActivity(intent);
-        }
+            if (mCastSession == null) {
+                mCastSession = mSessionManager.getCurrentCastSession();
+            }
+            if (mCastSession != null) {
+                loadRemoteMedia(0, true);
+            } else {
+                Intent intent = new Intent(SerieActivity.this,PlayerActivity.class);
+                intent.putExtra("url",poster.getTrailer().getUrl());
+                intent.putExtra("type",poster.getTrailer().getType());
+                intent.putExtra("image",poster.getImage());
+                intent.putExtra("title",poster.getTitle());
+                intent.putExtra("subtitle",poster.getTitle() + " Trailer");
+                startActivity(intent);
+            }
+        }catch (Exception e){}
+
     }
     public void rateDialog(){
         Dialog rateDialog = new Dialog(this,

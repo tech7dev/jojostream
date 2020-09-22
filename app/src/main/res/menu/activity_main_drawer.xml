@@ -25,6 +25,7 @@
         <item
             android:id="@+id/buy_now"
             android:icon="@drawable/ic_subscribe"
+            android:visible="false"
             android:title="@string/subscribe" />
     </group>
     <item android:title="Applications">

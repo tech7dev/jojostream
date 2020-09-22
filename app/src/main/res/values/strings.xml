@@ -93,7 +93,7 @@
     <string name="description_slide_1">Merci d\'avoir téléchargé l\'application JoJoStream, profitez-en à regarder gratuitement des Films et Séries populaires.</string>
 
     <string name="title_slide_2">Regardez tout ici</string>
-    <string name="description_slide_2">Regardez tout le contenu au même endroit: Films, Séries TV, Chaînes TV en direct et plus encore</string>
+    <string name="description_slide_2">Regardez tout le contenu au même endroit: Films et Séries TV</string>
 
     <string name="title_slide_3">Utiliser \n des sous-titres</string>
     <string name="description_slide_3">Regardez vos Films / Séries TV préférés dans votre langue d\'origine en utilisant des sous-titres</string>
@@ -102,7 +102,7 @@
     <string name="description_slide_4">Téléchargez des films / séries, sur votre appareil pour le regarder plus tard</string>
 
     <string name="title_slide_5">Regarder \n en plein écran</string>
-    <string name="description_slide_5">Diffusez n\'importe quel Film / Série TV et chaîne TV sur votre téléviseur afin de regardez confortablement</string>
+    <string name="description_slide_5">Diffusez n\'importe quel Film / Série TV sur votre téléviseur afin de regardez confortablement</string>
 
     <string name="dialog_text_no_ads_title">Désactiver les annonces</string>
     <string name="dialog_text_no_premium_wallpapers_title">Contenu de qualité</string>

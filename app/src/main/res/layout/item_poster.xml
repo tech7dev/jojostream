@@ -29,6 +29,7 @@
                 android:paddingRight="2dp"
                 android:background="@drawable/bg_year"
                 android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="2020" />
 
             <LinearLayout
@@ -59,6 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:layout_below="@id/image_view_item_poster_image"
                         android:layout_marginLeft="4dp"
                         android:ellipsize="marquee"

@@ -233,7 +233,7 @@ public class TopActivity extends AppCompatActivity {
         }
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        String title = "Top Rated";
+        String title = "Les Plus Notés";
         if (order.equals("rating"))
             title = "Plus Notés";
         else

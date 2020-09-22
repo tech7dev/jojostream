@@ -227,7 +227,7 @@ public class HomeFragment extends Fragment {
         if (my_list.size()>0){
             my_genre_list = new Genre();
             my_genre_list.setId(-2);
-            my_genre_list.setTitle("My list");
+            my_genre_list.setTitle("Mes Favoris");
             my_genre_list.setPosters(my_list);
         }else{
             my_genre_list=null;
