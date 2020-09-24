@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:loaderExtraColor="@color/pruple"
+        app:loaderExtraColor="@color/colorPrimaryDark"
         app:loaderPrimeColor="@color/colorAccent"
         app:loaderSize="tiny"
         android:layout_weight="1"

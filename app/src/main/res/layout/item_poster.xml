@@ -28,8 +28,8 @@
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
                 android:background="@drawable/bg_year"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/red"
+                android:textSize="10dp"
                 android:text="2020" />
 
             <LinearLayout
@@ -38,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:weightSum="1">
 
                 <ImageView

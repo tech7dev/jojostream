@@ -402,6 +402,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_home) {
             viewPager.setCurrentItem(0);
+        }else if (id == R.id.nav_movies) {
+            viewPager.setCurrentItem(1);
+        }else if (id == R.id.nav_tvshow) {
+            viewPager.setCurrentItem(2);
         }else if(id == R.id.login){
             Intent intent= new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(intent);

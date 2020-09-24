@@ -56,7 +56,7 @@ public class GenreActivity extends AppCompatActivity {
     private LinearLayout linear_layout_load_genre_activity;
 
 
-    private String SelectedOrder = "created";
+    private String SelectedOrder = "year";
     private Genre genre;
     private String from;
 

@@ -24,7 +24,7 @@
             <ImageView
 
                 android:padding="2dp"
-                android:tint="@color/colorAccent"
+                android:tint="@color/colorPrimaryDark"
                 app:srcCompat="@drawable/ic_eye"
                 android:id="@+id/image_view_item_episode_viewed"
                 android:adjustViewBounds="true"

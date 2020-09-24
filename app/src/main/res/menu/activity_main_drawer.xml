@@ -7,6 +7,17 @@
             android:icon="@drawable/ic_home"
             android:title="Accueil" />
         <item
+            android:id="@+id/nav_movies"
+            android:icon="@drawable/ic_movie"
+            android:title="Films" />
+        <item
+            android:id="@+id/nav_tvshow"
+            android:icon="@drawable/ic_tv_show"
+            android:title="Séries TV" />
+    </group>
+    <group android:checkableBehavior="single">
+
+        <item
             android:id="@+id/my_profile"
             android:icon="@drawable/ic_account"
             android:title="@string/my_profile" />
