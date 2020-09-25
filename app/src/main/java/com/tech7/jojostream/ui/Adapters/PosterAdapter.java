@@ -16,9 +16,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.ads.Ad;
-import com.facebook.ads.AdChoicesView;
+//import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdIconView;
+//import com.facebook.ads.AdIconView;
 import com.facebook.ads.InterstitialAdListener;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
@@ -171,55 +171,55 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("FACEBOOK")){
                             requestFacebookInterstitial();
                             if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")<=prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
-                                if (facebookInterstitialAd.isAdLoaded()) {
-                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
-                                    facebookInterstitialAd.show();
-                                    facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
-                                        @Override
-                                        public void onInterstitialDisplayed(Ad ad) {
-                                            Log.d("MYADSNOW","onInterstitialDisplayed");
-                                        }
-
-                                        @Override
-                                        public void onInterstitialDismissed(Ad ad) {
-                                            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_poster_image, "imageMain");
-                                            Intent intent = new Intent(activity, MovieActivity.class);
-                                            if (posterList.get(position).getType().equals("movie")) {
-                                                intent = new Intent(activity, MovieActivity.class);
-                                            } else if (posterList.get(position).getType().equals("serie")) {
-                                                intent = new Intent(activity, SerieActivity.class);
-                                            }
-                                            intent.putExtra("poster", posterList.get(holder.getAdapterPosition()));
-                                            activity.startActivity(intent,activityOptionsCompat.toBundle());
-                                        }
-
-                                        @Override
-                                        public void onError(Ad ad, AdError adError) {
-                                            Log.d("MYADSNOW","onError");
-
-                                        }
-
-                                        @Override
-                                        public void onAdLoaded(Ad ad) {
-                                            Log.d("MYADSNOW","onAdLoaded");
-
-                                        }
-
-                                        @Override
-                                        public void onAdClicked(Ad ad) {
-
-                                            Log.d("MYADSNOW","onAdClicked");
-                                        }
-
-                                        @Override
-                                        public void onLoggingImpression(Ad ad) {
-                                            Log.d("MYADSNOW","onLoggingImpression");
-                                        }
-                                    });
-                                }else{
-                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                    requestFacebookInterstitial();
-                                }
+//                                if (facebookInterstitialAd.isAdLoaded()) {
+//                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+//                                    facebookInterstitialAd.show();
+//                                    facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
+//                                        @Override
+//                                        public void onInterstitialDisplayed(Ad ad) {
+//                                            Log.d("MYADSNOW","onInterstitialDisplayed");
+//                                        }
+//
+//                                        @Override
+//                                        public void onInterstitialDismissed(Ad ad) {
+//                                            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_poster_image, "imageMain");
+//                                            Intent intent = new Intent(activity, MovieActivity.class);
+//                                            if (posterList.get(position).getType().equals("movie")) {
+//                                                intent = new Intent(activity, MovieActivity.class);
+//                                            } else if (posterList.get(position).getType().equals("serie")) {
+//                                                intent = new Intent(activity, SerieActivity.class);
+//                                            }
+//                                            intent.putExtra("poster", posterList.get(holder.getAdapterPosition()));
+//                                            activity.startActivity(intent,activityOptionsCompat.toBundle());
+//                                        }
+//
+//                                        @Override
+//                                        public void onError(Ad ad, AdError adError) {
+//                                            Log.d("MYADSNOW","onError");
+//
+//                                        }
+//
+//                                        @Override
+//                                        public void onAdLoaded(Ad ad) {
+//                                            Log.d("MYADSNOW","onAdLoaded");
+//
+//                                        }
+//
+//                                        @Override
+//                                        public void onAdClicked(Ad ad) {
+//
+//                                            Log.d("MYADSNOW","onAdClicked");
+//                                        }
+//
+//                                        @Override
+//                                        public void onLoggingImpression(Ad ad) {
+//                                            Log.d("MYADSNOW","onLoggingImpression");
+//                                        }
+//                                    });
+//                                }else{
+//                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                    requestFacebookInterstitial();
+//                                }
                             }else{
                                 activity.startActivity(intent, activityOptionsCompat.toBundle());
                                 prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
@@ -469,11 +469,11 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             // Add the AdChoices icon
             LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
-            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
-            adChoicesContainer.addView(adChoicesView, 0);
+            //AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
+            //adChoicesContainer.addView(adChoicesView, 0);
 
             // Create native UI using the ad metadata.
-            AdIconView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
+            MediaView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
             TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
             MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
             TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);

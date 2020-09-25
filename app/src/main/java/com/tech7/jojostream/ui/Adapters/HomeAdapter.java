@@ -14,9 +14,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.facebook.ads.Ad;
-import com.facebook.ads.AdChoicesView;
+import com.facebook.ads.AdOptionsView;
+//import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdIconView;
+//import com.facebook.ads.AdIconView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdListener;
@@ -289,57 +290,47 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private void loadNativeAd(final View view) {
             PrefManager prefManager= new PrefManager(activity);
 
-            nativeAd = new NativeAd(activity,prefManager.getString("ADMIN_NATIVE_FACEBOOK_ID"));
-            nativeAd.setAdListener(new NativeAdListener() {
-                @Override
-                public void onMediaDownloaded(Ad ad) {
-                    // Native ad finished downloading all assets
-                    Log.e(TAG, "Native ad finished downloading all assets.");
-                }
-
-                @Override
-                public void onError(Ad ad, AdError adError) {
-                    // Native ad failed to load
-                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
-                }
-
-                @Override
-                public void onAdLoaded(Ad ad) {
-                    // Native ad is loaded and ready to be displayed
-                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
-                    // Race condition, load() called again before last ad was displayed
-                    if (nativeAd == null || nativeAd != ad) {
-                        return;
-                    }
-                   /* NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes()
-                            .setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark))
-                            .setTitleTextColor(Color.WHITE)
-                            .setDescriptionTextColor(Color.WHITE)
-                            .setButtonColor(Color.WHITE);
-
-                    View adView = NativeAdView.render(activity, nativeAd, NativeAdView.Type.HEIGHT_300, viewAttributes);
-
-                    LinearLayout nativeAdContainer = (LinearLayout) view.findViewById(R.id.native_ad_container);
-                    nativeAdContainer.addView(adView);*/
-                    // Inflate Native Ad into Container
-                    inflateAd(nativeAd,view);
-                }
-
-                @Override
-                public void onAdClicked(Ad ad) {
-                    // Native ad clicked
-                    Log.d(TAG, "Native ad clicked!");
-                }
-
-                @Override
-                public void onLoggingImpression(Ad ad) {
-                    // Native ad impression
-                    Log.d(TAG, "Native ad impression logged!");
-                }
-            });
-
-            // Request an ad
-            nativeAd.loadAd();
+//            nativeAd = new NativeAd(activity,prefManager.getString("ADMIN_NATIVE_FACEBOOK_ID"));
+//            nativeAd.setAdListener(new NativeAdListener() {
+//                @Override
+//                public void onMediaDownloaded(Ad ad) {
+//                    // Native ad finished downloading all assets
+//                    Log.e(TAG, "Native ad finished downloading all assets.");
+//                }
+//
+//                @Override
+//                public void onError(Ad ad, AdError adError) {
+//                    // Native ad failed to load
+//                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
+//                }
+//
+//                @Override
+//                public void onAdLoaded(Ad ad) {
+//                    // Native ad is loaded and ready to be displayed
+//                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
+//                    // Race condition, load() called again before last ad was displayed
+//                    if (nativeAd == null || nativeAd != ad) {
+//                        return;
+//                    }
+//
+//                    inflateAd(nativeAd,view);
+//                }
+//
+//                @Override
+//                public void onAdClicked(Ad ad) {
+//                    // Native ad clicked
+//                    Log.d(TAG, "Native ad clicked!");
+//                }
+//
+//                @Override
+//                public void onLoggingImpression(Ad ad) {
+//                    // Native ad impression
+//                    Log.d(TAG, "Native ad impression logged!");
+//                }
+//            });
+//
+//            // Request an ad
+//            nativeAd.loadAd();
         }
 
         private void inflateAd(NativeAd nativeAd,View view) {
@@ -354,12 +345,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             nativeAdContainer.addView(adView);
 
             // Add the AdChoices icon
-            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
-            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
-            adChoicesContainer.addView(adChoicesView, 0);
+//            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
+//            AdOptionsView adChoicesView = new AdOptionsView(activity, nativeAd, adView);
+//            adChoicesContainer.addView(adChoicesView, 0);
 
             // Create native UI using the ad metadata.
-            AdIconView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
+            MediaView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
             TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
             MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
             TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);

@@ -3,6 +3,7 @@ package com.tech7.jojostream.ui.activities;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.ads.InterstitialAd;
+
+import com.facebook.ads.InterstitialAdListener;
+import com.tech7.jojostream.Provider.PrefManager;
 import com.tech7.jojostream.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,17 +34,22 @@ public class EmbedActivity extends AppCompatActivity {
     private myWebViewClient mWebViewClient;
     private String url;
 
+    private final String TAG = EmbedActivity.class.getSimpleName();
+    private InterstitialAd interstitialAd;
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_embed);
+        // Initialize the Audience Network SDK
+        AudienceNetworkAds.initialize(this);
 
+        interstitialAd = new InterstitialAd(this,"785965338862398_785982148860717");
+
+        //display facebookAds
+        showIntertistielAds();
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -46,8 +59,14 @@ public class EmbedActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+
         Bundle bundle = getIntent().getExtras() ;
         url = bundle.getString("url");
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_embed);
 
         customViewContainer = (FrameLayout) findViewById(R.id.customViewContainer);
         webView = (WebView) findViewById(R.id.webView);
@@ -55,13 +74,85 @@ public class EmbedActivity extends AppCompatActivity {
         mWebViewClient = new myWebViewClient();
         webView.setWebViewClient(mWebViewClient);
 
-        mWebChromeClient = new myWebChromeClient();
-        webView.setWebChromeClient(mWebChromeClient);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(false);
-        webView.getSettings().setSaveFormData(true);
-        webView.loadUrl(url);
+    }
+
+    private void showIntertistielAds() {
+
+        InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+                // Interstitial ad displayed callback
+                Log.e(TAG, "Interstitial ad displayed.");
+                mWebChromeClient = new myWebChromeClient();
+                webView.setWebChromeClient(mWebChromeClient);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.getSettings().setAppCacheEnabled(true);
+                webView.getSettings().setBuiltInZoomControls(false);
+                webView.getSettings().setSaveFormData(true);
+                webView.loadUrl(url);
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                // Interstitial dismissed callback
+                Log.e(TAG, "Interstitial ad dismissed.");
+                mWebChromeClient = new myWebChromeClient();
+                webView.setWebChromeClient(mWebChromeClient);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.getSettings().setAppCacheEnabled(true);
+                webView.getSettings().setBuiltInZoomControls(false);
+                webView.getSettings().setSaveFormData(true);
+                webView.loadUrl(url);
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                // Ad error callback
+                mWebChromeClient = new myWebChromeClient();
+                webView.setWebChromeClient(mWebChromeClient);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.getSettings().setAppCacheEnabled(true);
+                webView.getSettings().setBuiltInZoomControls(false);
+                webView.getSettings().setSaveFormData(true);
+                webView.loadUrl(url);
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+                // Interstitial ad is loaded and ready to be displayed
+                Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
+                // Show the ad
+                interstitialAd.show();
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+                // Ad clicked callback
+                Log.d(TAG, "Interstitial ad clicked!");
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+                // Ad impression logged callback
+                Log.d(TAG, "Interstitial ad impression logged!");
+            }
+        };
+
+        // For auto play video ads, it's recommended to load the ad
+        // at least 30 seconds before it is shown
+        interstitialAd.loadAd(
+                interstitialAd.buildLoadAdConfig()
+                        .withAdListener(interstitialAdListener)
+                        .build());
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (interstitialAd != null) {
+            interstitialAd.destroy();
+        }
+        super.onDestroy();
     }
 
     public boolean inCustomView() {

@@ -14,9 +14,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.facebook.ads.Ad;
-import com.facebook.ads.AdChoicesView;
+//import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdIconView;
+//import com.facebook.ads.AdIconView;
 import com.facebook.ads.InterstitialAdListener;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
@@ -86,180 +86,180 @@ public class ChannelAdapter  extends  RecyclerView.Adapter<RecyclerView.ViewHold
     }
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder,final int position) {
-            switch (getItemViewType(position)) {
-                case 1:
-                    final ChannelHolder holder = (ChannelHolder) viewHolder;
-                    Picasso.with(activity).load(channelList.get(position).getImage()).placeholder(R.drawable.place_holder_channel).into(holder.image_view_item_channel);
-                    holder.image_view_item_channel.setOnClickListener(v -> {
-                        PrefManager prefManager= new PrefManager(activity);
-
-
-                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
-                        Intent in = new Intent(activity, ChannelActivity.class);
-                        in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
-                        Intent intent = in;
-
-                        if(checkSUBSCRIBED()){
-                            activity.startActivity(intent, activityOptionsCompat.toBundle());
-                        }else{
-                            if( prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("ADMOB")){
-                                requestAdmobInterstitial();
-                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
-                                    if (admobInterstitialAd.isLoaded()) {
-                                        prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
-                                        admobInterstitialAd.show();
-                                        admobInterstitialAd.setAdListener(new AdListener() {
-                                            @Override
-                                            public void onAdClosed() {
-                                                requestAdmobInterstitial();
-                                                activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                            }
-                                        });
-                                    }else{
-                                        activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                        requestAdmobInterstitial();
-                                    }
-                                }else{
-                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
-                                }
-                            }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("FACEBOOK")){
-                                requestFacebookInterstitial();
-                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
-                                    if (facebookInterstitialAd.isAdLoaded()) {
-                                        prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
-                                        facebookInterstitialAd.show();
-                                        facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
-                                            @Override
-                                            public void onInterstitialDisplayed(Ad ad) {
-                                                Log.d("MYADSNOW","onInterstitialDisplayed");
-                                            }
-
-                                            @Override
-                                            public void onInterstitialDismissed(Ad ad) {
-
-                                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
-                                                Intent in = new Intent(activity, ChannelActivity.class);
-                                                in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
-
-                                                activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                            }
-
-                                            @Override
-                                            public void onError(Ad ad, AdError adError) {
-                                                Log.d("MYADSNOW","onError");
-
-                                            }
-
-                                            @Override
-                                            public void onAdLoaded(Ad ad) {
-                                                Log.d("MYADSNOW","onAdLoaded");
-
-                                            }
-
-                                            @Override
-                                            public void onAdClicked(Ad ad) {
-
-                                                Log.d("MYADSNOW","onAdClicked");
-                                            }
-
-                                            @Override
-                                            public void onLoggingImpression(Ad ad) {
-                                                Log.d("MYADSNOW","onLoggingImpression");
-                                            }
-                                        });
-                                    }else{
-                                        activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                        requestFacebookInterstitial();
-                                    }
-                                }else{
-                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
-                                }
-                            }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("BOTH")){
-                                requestAdmobInterstitial();
-                                requestFacebookInterstitial();
-                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")) {
-                                    if (prefManager.getString("AD_INTERSTITIAL_SHOW_TYPE").equals("ADMOB")){
-                                        if (admobInterstitialAd.isLoaded()) {
-                                            prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
-                                            prefManager.setString("AD_INTERSTITIAL_SHOW_TYPE","FACEBOOK");
-                                            admobInterstitialAd.show();
-                                            admobInterstitialAd.setAdListener(new AdListener(){
-                                                @Override
-                                                public void onAdClosed() {
-                                                    super.onAdClosed();
-                                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                                    requestFacebookInterstitial();
-                                                }
-                                            });
-                                        }else{
-                                            activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                            requestFacebookInterstitial();
-                                        }
-                                    }else{
-                                        if (facebookInterstitialAd.isAdLoaded()) {
-                                            prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
-                                            prefManager.setString("AD_INTERSTITIAL_SHOW_TYPE","ADMOB");
-                                            facebookInterstitialAd.show();
-                                            facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
-                                                @Override
-                                                public void onInterstitialDisplayed(Ad ad) {
-
-                                                }
-
-                                                @Override
-                                                public void onInterstitialDismissed(Ad ad) {
-                                                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
-                                                    Intent in = new Intent(activity, ChannelActivity.class);
-                                                    in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
-
-                                                    activity.startActivity(intent);
-                                                }
-
-                                                @Override
-                                                public void onError(Ad ad, AdError adError) {
-
-                                                }
-
-                                                @Override
-                                                public void onAdLoaded(Ad ad) {
-
-                                                }
-
-                                                @Override
-                                                public void onAdClicked(Ad ad) {
-
-                                                }
-
-                                                @Override
-                                                public void onLoggingImpression(Ad ad) {
-
-                                                }
-                                            });
-                                        }else{
-                                            activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                            requestFacebookInterstitial();
-                                        }
-                                    }
-                                }else{
-                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
-                                }
-                            }else{
-                                activity.startActivity(intent, activityOptionsCompat.toBundle());
-                            }
-                        }
-
-
-                    });
-                    break;
-                case 4:{
-                    final AdmobNativeHolder holder_admob = (AdmobNativeHolder) viewHolder;
-                    holder_admob.adLoader.loadAd(new AdRequest.Builder().build());
-                    break;
-                }
-            }
+//            switch (getItemViewType(position)) {
+//                case 1:
+//                    final ChannelHolder holder = (ChannelHolder) viewHolder;
+//                    Picasso.with(activity).load(channelList.get(position).getImage()).placeholder(R.drawable.place_holder_channel).into(holder.image_view_item_channel);
+//                    holder.image_view_item_channel.setOnClickListener(v -> {
+//                        PrefManager prefManager= new PrefManager(activity);
+//
+//
+//                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
+//                        Intent in = new Intent(activity, ChannelActivity.class);
+//                        in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
+//                        Intent intent = in;
+//
+//                        if(checkSUBSCRIBED()){
+//                            activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                        }else{
+//                            if( prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("ADMOB")){
+//                                requestAdmobInterstitial();
+//                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
+//                                    if (admobInterstitialAd.isLoaded()) {
+//                                        prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+//                                        admobInterstitialAd.show();
+//                                        admobInterstitialAd.setAdListener(new AdListener() {
+//                                            @Override
+//                                            public void onAdClosed() {
+//                                                requestAdmobInterstitial();
+//                                                activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                            }
+//                                        });
+//                                    }else{
+//                                        activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                        requestAdmobInterstitial();
+//                                    }
+//                                }else{
+//                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
+//                                }
+//                            }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("FACEBOOK")){
+//                                requestFacebookInterstitial();
+//                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
+//                                    if (facebookInterstitialAd.isAdLoaded()) {
+//                                        prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+//                                        facebookInterstitialAd.show();
+//                                        facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
+//                                            @Override
+//                                            public void onInterstitialDisplayed(Ad ad) {
+//                                                Log.d("MYADSNOW","onInterstitialDisplayed");
+//                                            }
+//
+//                                            @Override
+//                                            public void onInterstitialDismissed(Ad ad) {
+//
+//                                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
+//                                                Intent in = new Intent(activity, ChannelActivity.class);
+//                                                in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
+//
+//                                                activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                            }
+//
+//                                            @Override
+//                                            public void onError(Ad ad, AdError adError) {
+//                                                Log.d("MYADSNOW","onError");
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onAdLoaded(Ad ad) {
+//                                                Log.d("MYADSNOW","onAdLoaded");
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onAdClicked(Ad ad) {
+//
+//                                                Log.d("MYADSNOW","onAdClicked");
+//                                            }
+//
+//                                            @Override
+//                                            public void onLoggingImpression(Ad ad) {
+//                                                Log.d("MYADSNOW","onLoggingImpression");
+//                                            }
+//                                        });
+//                                    }else{
+//                                        activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                        requestFacebookInterstitial();
+//                                    }
+//                                }else{
+//                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
+//                                }
+//                            }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("BOTH")){
+//                                requestAdmobInterstitial();
+//                                requestFacebookInterstitial();
+//                                if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")==prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")) {
+//                                    if (prefManager.getString("AD_INTERSTITIAL_SHOW_TYPE").equals("ADMOB")){
+//                                        if (admobInterstitialAd.isLoaded()) {
+//                                            prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+//                                            prefManager.setString("AD_INTERSTITIAL_SHOW_TYPE","FACEBOOK");
+//                                            admobInterstitialAd.show();
+//                                            admobInterstitialAd.setAdListener(new AdListener(){
+//                                                @Override
+//                                                public void onAdClosed() {
+//                                                    super.onAdClosed();
+//                                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                                    requestFacebookInterstitial();
+//                                                }
+//                                            });
+//                                        }else{
+//                                            activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                            requestFacebookInterstitial();
+//                                        }
+//                                    }else{
+//                                        if (facebookInterstitialAd.isAdLoaded()) {
+//                                            prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+//                                            prefManager.setString("AD_INTERSTITIAL_SHOW_TYPE","ADMOB");
+//                                            facebookInterstitialAd.show();
+//                                            facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
+//                                                @Override
+//                                                public void onInterstitialDisplayed(Ad ad) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onInterstitialDismissed(Ad ad) {
+//                                                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_channel, "imageMain");
+//                                                    Intent in = new Intent(activity, ChannelActivity.class);
+//                                                    in.putExtra("channel", channelList.get(holder.getAdapterPosition()));
+//
+//                                                    activity.startActivity(intent);
+//                                                }
+//
+//                                                @Override
+//                                                public void onError(Ad ad, AdError adError) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onAdLoaded(Ad ad) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onAdClicked(Ad ad) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onLoggingImpression(Ad ad) {
+//
+//                                                }
+//                                            });
+//                                        }else{
+//                                            activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                            requestFacebookInterstitial();
+//                                        }
+//                                    }
+//                                }else{
+//                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
+//                                }
+//                            }else{
+//                                activity.startActivity(intent, activityOptionsCompat.toBundle());
+//                            }
+//                        }
+//
+//
+//                    });
+//                    break;
+//                case 4:{
+//                    final AdmobNativeHolder holder_admob = (AdmobNativeHolder) viewHolder;
+//                    holder_admob.adLoader.loadAd(new AdRequest.Builder().build());
+//                    break;
+//                }
+//            }
         }
         @Override
         public int getItemCount() {
@@ -297,103 +297,103 @@ public class ChannelAdapter  extends  RecyclerView.Adapter<RecyclerView.ViewHold
         private void loadNativeAd(final View view) {
             PrefManager prefManager= new PrefManager(activity);
 
-            nativeAd = new NativeAd(activity,prefManager.getString("ADMIN_NATIVE_FACEBOOK_ID"));
-            nativeAd.setAdListener(new NativeAdListener() {
-                @Override
-                public void onMediaDownloaded(Ad ad) {
-                    // Native ad finished downloading all assets
-                    Log.e(TAG, "Native ad finished downloading all assets.");
-                }
-
-                @Override
-                public void onError(Ad ad, AdError adError) {
-                    // Native ad failed to load
-                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
-                }
-
-                @Override
-                public void onAdLoaded(Ad ad) {
-                    // Native ad is loaded and ready to be displayed
-                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
-                    // Race condition, load() called again before last ad was displayed
-                    if (nativeAd == null || nativeAd != ad) {
-                        return;
-                    }
-                   /* NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes()
-                            .setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark))
-                            .setTitleTextColor(Color.WHITE)
-                            .setDescriptionTextColor(Color.WHITE)
-                            .setButtonColor(Color.WHITE);
-
-                    View adView = NativeAdView.render(activity, nativeAd, NativeAdView.Type.HEIGHT_300, viewAttributes);
-
-                    LinearLayout nativeAdContainer = (LinearLayout) view.findViewById(R.id.native_ad_container);
-                    nativeAdContainer.addView(adView);*/
-                    // Inflate Native Ad into Container
-                    inflateAd(nativeAd,view);
-                }
-
-                @Override
-                public void onAdClicked(Ad ad) {
-                    // Native ad clicked
-                    Log.d(TAG, "Native ad clicked!");
-                }
-
-                @Override
-                public void onLoggingImpression(Ad ad) {
-                    // Native ad impression
-                    Log.d(TAG, "Native ad impression logged!");
-                }
-            });
-
-            // Request an ad
-            nativeAd.loadAd();
+//            nativeAd = new NativeAd(activity,prefManager.getString("ADMIN_NATIVE_FACEBOOK_ID"));
+//            nativeAd.setAdListener(new NativeAdListener() {
+//                @Override
+//                public void onMediaDownloaded(Ad ad) {
+//                    // Native ad finished downloading all assets
+//                    Log.e(TAG, "Native ad finished downloading all assets.");
+//                }
+//
+//                @Override
+//                public void onError(Ad ad, AdError adError) {
+//                    // Native ad failed to load
+//                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
+//                }
+//
+//                @Override
+//                public void onAdLoaded(Ad ad) {
+//                    // Native ad is loaded and ready to be displayed
+//                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
+//                    // Race condition, load() called again before last ad was displayed
+//                    if (nativeAd == null || nativeAd != ad) {
+//                        return;
+//                    }
+//                   /* NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes()
+//                            .setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark))
+//                            .setTitleTextColor(Color.WHITE)
+//                            .setDescriptionTextColor(Color.WHITE)
+//                            .setButtonColor(Color.WHITE);
+//
+//                    View adView = NativeAdView.render(activity, nativeAd, NativeAdView.Type.HEIGHT_300, viewAttributes);
+//
+//                    LinearLayout nativeAdContainer = (LinearLayout) view.findViewById(R.id.native_ad_container);
+//                    nativeAdContainer.addView(adView);*/
+//                    // Inflate Native Ad into Container
+//                    inflateAd(nativeAd,view);
+//                }
+//
+//                @Override
+//                public void onAdClicked(Ad ad) {
+//                    // Native ad clicked
+//                    Log.d(TAG, "Native ad clicked!");
+//                }
+//
+//                @Override
+//                public void onLoggingImpression(Ad ad) {
+//                    // Native ad impression
+//                    Log.d(TAG, "Native ad impression logged!");
+//                }
+//            });
+//
+//            // Request an ad
+//            nativeAd.loadAd();
         }
 
         private void inflateAd(NativeAd nativeAd,View view) {
 
-            nativeAd.unregisterView();
-
-            // Add the Ad view into the ad container.
-            nativeAdContainer = view.findViewById(R.id.native_ad_container);
-            LayoutInflater inflater = LayoutInflater.from(activity);
-            // Inflate the Ad view.  The layout referenced should be the one you created in the last step.
-            adView = (LinearLayout) inflater.inflate(R.layout.native_ad_layout_1, nativeAdContainer, false);
-            nativeAdContainer.addView(adView);
-
-            // Add the AdChoices icon
-            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
-            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
-            adChoicesContainer.addView(adChoicesView, 0);
-
-            // Create native UI using the ad metadata.
-            AdIconView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
-            TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
-            MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
-            TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);
-            TextView nativeAdBody = adView.findViewById(R.id.native_ad_body);
-            TextView sponsoredLabel = adView.findViewById(R.id.native_ad_sponsored_label);
-            Button nativeAdCallToAction = adView.findViewById(R.id.native_ad_call_to_action);
+//            nativeAd.unregisterView();
+//
+//            // Add the Ad view into the ad container.
+//            nativeAdContainer = view.findViewById(R.id.native_ad_container);
+//            LayoutInflater inflater = LayoutInflater.from(activity);
+//            // Inflate the Ad view.  The layout referenced should be the one you created in the last step.
+//            adView = (LinearLayout) inflater.inflate(R.layout.native_ad_layout_1, nativeAdContainer, false);
+//            nativeAdContainer.addView(adView);
+//
+//            // Add the AdChoices icon
+//            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
+//            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
+//            adChoicesContainer.addView(adChoicesView, 0);
+//
+//            // Create native UI using the ad metadata.
+//            AdIconView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
+//            TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
+//            MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
+//            TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);
+//            TextView nativeAdBody = adView.findViewById(R.id.native_ad_body);
+//            TextView sponsoredLabel = adView.findViewById(R.id.native_ad_sponsored_label);
+//            Button nativeAdCallToAction = adView.findViewById(R.id.native_ad_call_to_action);
 
             // Set the Text.
-            nativeAdTitle.setText(nativeAd.getAdvertiserName());
-            nativeAdBody.setText(nativeAd.getAdBodyText());
-            nativeAdSocialContext.setText(nativeAd.getAdSocialContext());
-            nativeAdCallToAction.setVisibility(nativeAd.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
-            nativeAdCallToAction.setText(nativeAd.getAdCallToAction());
-            sponsoredLabel.setText(nativeAd.getSponsoredTranslation());
-
-            // Create a list of clickable views
-            List<View> clickableViews = new ArrayList<>();
-            clickableViews.add(nativeAdTitle);
-            clickableViews.add(nativeAdCallToAction);
-
-            // Register the Title and CTA button to listen for clicks.
-            nativeAd.registerViewForInteraction(
-                    adView,
-                    nativeAdMedia,
-                    nativeAdIcon,
-                    clickableViews);
+//            nativeAdTitle.setText(nativeAd.getAdvertiserName());
+//            nativeAdBody.setText(nativeAd.getAdBodyText());
+//            nativeAdSocialContext.setText(nativeAd.getAdSocialContext());
+//            nativeAdCallToAction.setVisibility(nativeAd.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
+//            nativeAdCallToAction.setText(nativeAd.getAdCallToAction());
+//            sponsoredLabel.setText(nativeAd.getSponsoredTranslation());
+//
+//            // Create a list of clickable views
+//            List<View> clickableViews = new ArrayList<>();
+//            clickableViews.add(nativeAdTitle);
+//            clickableViews.add(nativeAdCallToAction);
+//
+//            // Register the Title and CTA button to listen for clicks.
+//            nativeAd.registerViewForInteraction(
+//                    adView,
+//                    nativeAdMedia,
+//                    nativeAdIcon,
+//                    clickableViews);
         }
 
     }
