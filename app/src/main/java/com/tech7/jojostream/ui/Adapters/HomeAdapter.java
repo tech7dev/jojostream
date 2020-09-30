@@ -14,7 +14,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.facebook.ads.Ad;
-import com.facebook.ads.AdOptionsView;
 //import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
 //import com.facebook.ads.AdIconView;
@@ -312,7 +311,17 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                    if (nativeAd == null || nativeAd != ad) {
 //                        return;
 //                    }
+//                   /* NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes()
+//                            .setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark))
+//                            .setTitleTextColor(Color.WHITE)
+//                            .setDescriptionTextColor(Color.WHITE)
+//                            .setButtonColor(Color.WHITE);
 //
+//                    View adView = NativeAdView.render(activity, nativeAd, NativeAdView.Type.HEIGHT_300, viewAttributes);
+//
+//                    LinearLayout nativeAdContainer = (LinearLayout) view.findViewById(R.id.native_ad_container);
+//                    nativeAdContainer.addView(adView);*/
+//                    // Inflate Native Ad into Container
 //                    inflateAd(nativeAd,view);
 //                }
 //
@@ -345,8 +354,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             nativeAdContainer.addView(adView);
 
             // Add the AdChoices icon
-//            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
-//            AdOptionsView adChoicesView = new AdOptionsView(activity, nativeAd, adView);
+            LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
+//            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
 //            adChoicesContainer.addView(adChoicesView, 0);
 
             // Create native UI using the ad metadata.

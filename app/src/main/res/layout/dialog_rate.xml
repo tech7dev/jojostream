@@ -20,14 +20,14 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/text_view_rate_title"
-                android:textColor="@color/primary_text"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"
                 android:lines="1"
                 android:minLines="1"
-                android:text="Rate This Movie"
+                android:text="Noter ce Film SVP!"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <androidx.appcompat.widget.AppCompatRatingBar
@@ -37,8 +37,8 @@
                 android:foregroundTint="#ffffff"
                 android:progressTint="#ffffff"
                 android:backgroundTint="@color/gray"
-                android:secondaryProgressTint="@color/gray"
-                android:progressBackgroundTint="@color/gray"
+                android:secondaryProgressTint="@color/black"
+                android:progressBackgroundTint="@color/black"
                 android:rating="0"
                 android:stepSize="1"
                 android:elevation="20dp"

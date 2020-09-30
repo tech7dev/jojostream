@@ -199,7 +199,7 @@ public class SplashActivity extends AppCompatActivity {
                         }
                         if (response.body().getCode().equals(200)) {
                             if (!prf.getString("first").equals("true")){
-                                Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                                Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.enter, R.anim.exit);
                                 finish();
@@ -237,7 +237,7 @@ public class SplashActivity extends AppCompatActivity {
                                     .setNegativeButton(getResources().getString(R.string.skip), new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             if (!prf.getString("first").equals("true")){
-                                                Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                                                Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                                                 startActivity(intent);
                                                 overridePendingTransition(R.anim.enter, R.anim.exit);
                                                 finish();
@@ -255,7 +255,7 @@ public class SplashActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             if (!prf.getString("first").equals("true")){
-                                Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                                Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.enter, R.anim.exit);
                                 finish();
@@ -269,7 +269,7 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     }else {
                         if (!prf.getString("first").equals("true")){
-                            Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                            Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter, R.anim.exit);
                             finish();
@@ -286,7 +286,7 @@ public class SplashActivity extends AppCompatActivity {
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
                     updateTextViews();
                     if (!prf.getString("first").equals("true")){
-                        Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                        Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         finish();
@@ -301,7 +301,7 @@ public class SplashActivity extends AppCompatActivity {
             });
         }else{
             if (!prf.getString("first").equals("true")){
-                Intent intent = new Intent(SplashActivity.this,IntroActivity.class);
+                Intent intent = new Intent(SplashActivity.this,HomeActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 finish();

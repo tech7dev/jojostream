@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textColor="@color/primary_text"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="20dp"
@@ -86,7 +86,7 @@
             android:textSize="18dp"
             android:lines="1"
             android:gravity="center|left"
-            android:text="Feedback"
+            android:text="Commentaire"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
         <EditText
@@ -95,7 +95,7 @@
             android:lines="4"
             android:padding="10dp"
             android:gravity="top|left"
-            android:hint="Write feedback ..."
+            android:hint="Rédiger un commentaire ..."
             android:textColor="@color/white"
             android:background="@drawable/comment_bg_write"
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             <Button
                 android:id="@+id/button_cancel"
                 android:textStyle="bold"
-                android:text="Cancel"
+                android:text="Annuler"
                 android:textColor="@color/gray"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
@@ -117,7 +117,7 @@
             <Button
                 android:id="@+id/buttun_send_feedback"
                 android:textStyle="bold"
-                android:text="Submit"
+                android:text="Soumettre"
                 android:textColor="@color/white"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"

@@ -30,15 +30,24 @@
             android:icon="@drawable/ic_logout"
             android:title="@string/Logout" />
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/action_settings" />
-        <item
             android:id="@+id/buy_now"
             android:icon="@drawable/ic_subscribe"
             android:visible="false"
             android:title="@string/subscribe" />
     </group>
+    <item android:title="Aide">
+        <menu>
+
+            <item
+                android:id="@+id/nav_view_help"
+                android:icon="@drawable/ic_eye"
+                android:title="Comment Suivre" />
+            <item
+                android:id="@+id/nav_down_help"
+                android:icon="@drawable/ic_file_download"
+                android:title="Comment Télécharger" />
+        </menu>
+    </item>
     <item android:title="Applications">
         <menu>
 
@@ -55,13 +64,17 @@
                 android:icon="@drawable/ic_mail"
                 android:title="@string/action_support" />
             <item
-                android:id="@+id/nav_policy"
-                android:icon="@drawable/ic_lock"
-                android:title="@string/policy_privacy" />
-            <item
                 android:id="@+id/nav_web"
                 android:icon="@drawable/ic_cloud"
                 android:title="Siteweb: jojostream.com" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/action_settings" />
+            <item
+                android:id="@+id/nav_policy"
+                android:icon="@drawable/ic_lock"
+                android:title="@string/policy_privacy" />
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_exit"

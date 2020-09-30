@@ -20,7 +20,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:tint="@color/colorAccent"
+            android:tint="@color/colorPrimaryDark"
             app:srcCompat="@drawable/ic_email"
             android:layout_width="match_parent"
             android:layout_height="120dp"
@@ -41,12 +41,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
-                app:hintTextColor="@color/colorAccent"
+                app:hintTextColor="@color/colorPrimaryDark"
                 app:boxStrokeErrorColor="@color/red"
-                app:helperTextTextColor="@color/colorAccent"
+                app:helperTextTextColor="@color/colorPrimaryDark"
                 app:errorTextColor="@color/red"
-                app:boxStrokeColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
                     android:lines="1"
                     android:id="@+id/support_input_email"
                     android:textCursorDrawable="@drawable/color_cursor_white"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -67,12 +67,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_name"
-                app:hintTextColor="@color/colorAccent"
+                app:hintTextColor="@color/colorPrimaryDark"
                 app:boxStrokeErrorColor="@color/red"
-                app:helperTextTextColor="@color/colorAccent"
+                app:helperTextTextColor="@color/colorPrimaryDark"
                 app:errorTextColor="@color/red"
-                app:boxStrokeColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -94,12 +94,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_message"
-                app:hintTextColor="@color/colorAccent"
+                app:hintTextColor="@color/colorPrimaryDark"
                 app:boxStrokeErrorColor="@color/red"
-                app:helperTextTextColor="@color/colorAccent"
+                app:helperTextTextColor="@color/colorPrimaryDark"
                 app:errorTextColor="@color/red"
-                app:boxStrokeColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -107,7 +107,7 @@
                     android:lines="2"
                     android:id="@+id/support_input_message"
                     android:textCursorDrawable="@drawable/color_cursor_white"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

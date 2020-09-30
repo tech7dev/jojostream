@@ -122,7 +122,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:text="Jocker"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="19dp"
                             android:textStyle="bold" />
 
@@ -430,7 +430,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
                                 android:text="SAISONS"
-                                android:textColor="@color/colorAccent"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="19dp"
                                 android:textStyle="bold" />
                             <RelativeLayout
@@ -438,7 +438,7 @@
                                 android:layout_marginTop="40dp"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorPrimary"
                                 android:layout_width="100dp"
                                 android:layout_height="4dp"/>
                             <RelativeLayout

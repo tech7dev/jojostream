@@ -50,9 +50,18 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ui.activities.DownloadActivity"
-            android:theme="@style/AppThemeActionDestils"/>
+        <activity
+            android:name=".ui.activities.TutorialWatchActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".ui.activities.TutorialDownloadActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme"/>
 
+        <activity
+            android:name=".ui.activities.DownloadActivity"
+            android:theme="@style/AppThemeActionDestils" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

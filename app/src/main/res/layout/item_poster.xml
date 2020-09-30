@@ -28,7 +28,7 @@
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
                 android:background="@drawable/bg_year"
-                android:textColor="@color/red"
+                android:textColor="@color/colorPrimary"
                 android:textSize="10dp"
                 android:text="2020" />
 

@@ -25,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
                     <ImageView
-                        android:tint="@color/colorAccent"
+                        android:tint="@color/colorPrimary"
                         android:padding="15dp"
                         app:srcCompat="@drawable/ic_comment"
                         android:layout_width="50dp"
@@ -35,7 +35,7 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:gravity="center"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorPrimary"
                         android:text="0 Commentaires"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -44,7 +44,7 @@
                 <ImageView
                     android:id="@+id/image_view_comment_dialog_close"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     android:padding="5dp"
                     app:srcCompat="@drawable/ic_arrow_down"
                     android:layout_width="50dp"
@@ -110,7 +110,7 @@
                     android:padding="7dp"
                     android:id="@+id/image_view_comment_dialog_add_comment"
                     app:srcCompat="@drawable/ic_send"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     android:layout_alignParentRight="true"
                     android:layout_width="45dp"
                     android:layout_height="45dp" />

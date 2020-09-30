@@ -1453,12 +1453,12 @@ public class MovieActivity extends AppCompatActivity {
             favorites_list.add(poster);
             Hawk.put("my_list",favorites_list);
             image_view_activity_movie_my_list.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
-            Toasty.info(this, "This movie has been added to your list", Toast.LENGTH_SHORT).show();
+            Toasty.info(this, "Ce Film a été ajouté à votre liste des favoris", Toast.LENGTH_SHORT).show();
         }else{
             favorites_list.remove(fav_position);
             Hawk.put("my_list",favorites_list);
             image_view_activity_movie_my_list.setImageDrawable(getResources().getDrawable(R.drawable.ic_check));
-            Toasty.warning(this, "This movie has been removed from your list", Toast.LENGTH_SHORT).show();
+            Toasty.warning(this, "Ce Film a été supprimé de votre liste des favoris", Toast.LENGTH_SHORT).show();
         }
     }
     public void share(){

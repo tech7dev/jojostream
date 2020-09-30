@@ -470,6 +470,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             //overridePendingTransition(R.anim.enter, R.anim.exit);
         }else if (id == R.id.buy_now){
             showDialog();
+        }else if(id == R.id.nav_view_help){
+            Intent intent= new Intent(HomeActivity.this, TutorialWatchActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+        }else if(id == R.id.nav_down_help){
+            Intent intent= new Intent(HomeActivity.this, TutorialDownloadActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -45,11 +45,13 @@ public class EmbedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Initialize the Audience Network SDK
         AudienceNetworkAds.initialize(this);
-
         interstitialAd = new InterstitialAd(this,"785965338862398_785982148860717");
 
-        //display facebookAds
-        showIntertistielAds();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_embed);
+
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -59,20 +61,25 @@ public class EmbedActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-
         Bundle bundle = getIntent().getExtras() ;
         url = bundle.getString("url");
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_embed);
 
         customViewContainer = (FrameLayout) findViewById(R.id.customViewContainer);
         webView = (WebView) findViewById(R.id.webView);
 
         mWebViewClient = new myWebViewClient();
         webView.setWebViewClient(mWebViewClient);
+
+        mWebChromeClient = new myWebChromeClient();
+        webView.setWebChromeClient(mWebChromeClient);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAppCacheEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setSaveFormData(true);
+        webView.loadUrl(url);
+
+        //display facebookAds
+        showIntertistielAds();
 
     }
 
@@ -83,38 +90,18 @@ public class EmbedActivity extends AppCompatActivity {
             public void onInterstitialDisplayed(Ad ad) {
                 // Interstitial ad displayed callback
                 Log.e(TAG, "Interstitial ad displayed.");
-                mWebChromeClient = new myWebChromeClient();
-                webView.setWebChromeClient(mWebChromeClient);
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.getSettings().setAppCacheEnabled(true);
-                webView.getSettings().setBuiltInZoomControls(false);
-                webView.getSettings().setSaveFormData(true);
-                webView.loadUrl(url);
+
             }
 
             @Override
             public void onInterstitialDismissed(Ad ad) {
                 // Interstitial dismissed callback
                 Log.e(TAG, "Interstitial ad dismissed.");
-                mWebChromeClient = new myWebChromeClient();
-                webView.setWebChromeClient(mWebChromeClient);
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.getSettings().setAppCacheEnabled(true);
-                webView.getSettings().setBuiltInZoomControls(false);
-                webView.getSettings().setSaveFormData(true);
-                webView.loadUrl(url);
             }
 
             @Override
             public void onError(Ad ad, AdError adError) {
                 // Ad error callback
-                mWebChromeClient = new myWebChromeClient();
-                webView.setWebChromeClient(mWebChromeClient);
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.getSettings().setAppCacheEnabled(true);
-                webView.getSettings().setBuiltInZoomControls(false);
-                webView.getSettings().setSaveFormData(true);
-                webView.loadUrl(url);
             }
 
             @Override

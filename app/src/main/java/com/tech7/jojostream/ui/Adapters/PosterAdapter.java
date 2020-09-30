@@ -2,7 +2,6 @@ package com.tech7.jojostream.ui.Adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,9 +65,9 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.activity = activity;
     }
     public PosterAdapter(List<Poster> posterList, Activity activity) {
-            this.posterList = posterList;
-            this.activity = activity;
-        }
+        this.posterList = posterList;
+        this.activity = activity;
+    }
     public PosterAdapter(List<Poster> posterList, Activity activity,boolean deletable) {
         this.posterList = posterList;
         this.activity = activity;
@@ -111,12 +110,11 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         switch (getItemViewType(position)) {
             case 1:
 
                 final PosterHolder holder = (PosterHolder) viewHolder;
-
                 holder.text_view_item_poster_title.setText(posterList.get(position).getTitle());
                 holder.text_view_item_poster_title.setSelected(true);
                 holder.year_poster.setText(posterList.get(position).getYear());
@@ -130,13 +128,12 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 holder.image_view_item_poster_image.setOnClickListener(v -> {
 
-
                     ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_poster_image, "imageMain");
                     Intent intent = new Intent(activity, MovieActivity.class);
                     if (posterList.get(position).getType().equals("movie")) {
-                         intent = new Intent(activity, MovieActivity.class);
+                        intent = new Intent(activity, MovieActivity.class);
                     } else if (posterList.get(position).getType().equals("serie")) {
-                         intent = new Intent(activity, SerieActivity.class);
+                        intent = new Intent(activity, SerieActivity.class);
                     }
                     intent.putExtra("poster", posterList.get(holder.getAdapterPosition()));
                     final Intent intent1 = intent;
@@ -171,8 +168,8 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         }else if(prefManager.getString("ADMIN_INTERSTITIAL_TYPE").equals("FACEBOOK")){
                             requestFacebookInterstitial();
                             if(prefManager.getInt("ADMIN_INTERSTITIAL_CLICKS")<=prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")){
-//                                if (facebookInterstitialAd.isAdLoaded()) {
-//                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
+                                if (facebookInterstitialAd.isAdLoaded()) {
+                                    prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
 //                                    facebookInterstitialAd.show();
 //                                    facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
 //                                        @Override
@@ -216,10 +213,10 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                                            Log.d("MYADSNOW","onLoggingImpression");
 //                                        }
 //                                    });
-//                                }else{
-//                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
-//                                    requestFacebookInterstitial();
-//                                }
+                                }else{
+                                    activity.startActivity(intent, activityOptionsCompat.toBundle());
+                                    requestFacebookInterstitial();
+                                }
                             }else{
                                 activity.startActivity(intent, activityOptionsCompat.toBundle());
                                 prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",prefManager.getInt("ADMOB_INTERSTITIAL_COUNT_CLICKS")+1);
@@ -249,46 +246,46 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     if (facebookInterstitialAd.isAdLoaded()) {
                                         prefManager.setInt("ADMOB_INTERSTITIAL_COUNT_CLICKS",0);
                                         prefManager.setString("AD_INTERSTITIAL_SHOW_TYPE","ADMOB");
-                                        facebookInterstitialAd.show();
-                                        facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
-                                            @Override
-                                            public void onInterstitialDisplayed(Ad ad) {
-
-                                            }
-
-                                            @Override
-                                            public void onInterstitialDismissed(Ad ad) {
-                                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_poster_image, "imageMain");
-                                                Intent intent = new Intent(activity, MovieActivity.class);
-                                                if (posterList.get(position).getType().equals("movie")) {
-                                                    intent = new Intent(activity, MovieActivity.class);
-                                                } else if (posterList.get(position).getType().equals("serie")) {
-                                                    intent = new Intent(activity, SerieActivity.class);
-                                                }
-                                                intent.putExtra("poster", posterList.get(holder.getAdapterPosition()));
-                                                activity.startActivity(intent);
-                                            }
-
-                                            @Override
-                                            public void onError(Ad ad, AdError adError) {
-
-                                            }
-
-                                            @Override
-                                            public void onAdLoaded(Ad ad) {
-
-                                            }
-
-                                            @Override
-                                            public void onAdClicked(Ad ad) {
-
-                                            }
-
-                                            @Override
-                                            public void onLoggingImpression(Ad ad) {
-
-                                            }
-                                        });
+//                                        facebookInterstitialAd.show();
+//                                        facebookInterstitialAd.setAdListener(new InterstitialAdListener() {
+//                                            @Override
+//                                            public void onInterstitialDisplayed(Ad ad) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onInterstitialDismissed(Ad ad) {
+//                                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.image_view_item_poster_image, "imageMain");
+//                                                Intent intent = new Intent(activity, MovieActivity.class);
+//                                                if (posterList.get(position).getType().equals("movie")) {
+//                                                    intent = new Intent(activity, MovieActivity.class);
+//                                                } else if (posterList.get(position).getType().equals("serie")) {
+//                                                    intent = new Intent(activity, SerieActivity.class);
+//                                                }
+//                                                intent.putExtra("poster", posterList.get(holder.getAdapterPosition()));
+//                                                activity.startActivity(intent);
+//                                            }
+//
+//                                            @Override
+//                                            public void onError(Ad ad, AdError adError) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onAdLoaded(Ad ad) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onAdClicked(Ad ad) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onLoggingImpression(Ad ad) {
+//
+//                                            }
+//                                        });
                                     }else{
                                         activity.startActivity(intent, activityOptionsCompat.toBundle());
                                         requestFacebookInterstitial();
@@ -307,23 +304,23 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 });
                 holder.image_view_item_poster_delete.setOnClickListener(v->{
 
-                        List<Poster> favorites_list =Hawk.get("my_list");
-                        if (favorites_list == null) {
-                            favorites_list = new ArrayList<>();
+                    List<Poster> favorites_list =Hawk.get("my_list");
+                    if (favorites_list == null) {
+                        favorites_list = new ArrayList<>();
+                    }
+                    int fav_position = -1;
+                    for (int i = 0; i < favorites_list.size(); i++) {
+                        if (favorites_list.get(i).getId().equals(posterList.get(position).getId())) {
+                            fav_position = i;
                         }
-                        int fav_position = -1;
-                        for (int i = 0; i < favorites_list.size(); i++) {
-                            if (favorites_list.get(i).getId().equals(posterList.get(position).getId())) {
-                                fav_position = i;
-                            }
-                        }
+                    }
 
-                        favorites_list.remove(fav_position);
-                        Hawk.put("my_list",favorites_list);
+                    favorites_list.remove(fav_position);
+                    Hawk.put("my_list",favorites_list);
 
-                        posterList.remove(position);
-                        notifyItemRemoved(position);
-                        notifyDataSetChanged();
+                    posterList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyDataSetChanged();
 
                 });
                 break;
@@ -348,26 +345,26 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         }
 
+    }
+    @Override
+    public int getItemCount() {
+        return posterList.size();
+    }
+    public class PosterHolder extends RecyclerView.ViewHolder {
+        private TextView text_view_item_poster_title;
+        private TextView year_poster;
+        private ImageView image_view_item_poster_delete;
+        public ImageView image_view_item_poster_image ;
+        public RelativeLayout relative_layout_item_poster_delete ;
+        public PosterHolder(View itemView) {
+            super(itemView);
+            this.text_view_item_poster_title = (TextView) itemView.findViewById(R.id.text_view_item_poster_title);
+            this.year_poster = (TextView) itemView.findViewById(R.id.year_poster);
+            this.image_view_item_poster_image =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_image);
+            this.relative_layout_item_poster_delete =  (RelativeLayout) itemView.findViewById(R.id.relative_layout_item_poster_delete);
+            this.image_view_item_poster_delete =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_delete);
         }
-        @Override
-        public int getItemCount() {
-            return posterList.size();
-        }
-        public class PosterHolder extends RecyclerView.ViewHolder {
-            private TextView text_view_item_poster_title;
-            private TextView year_poster;
-            private ImageView image_view_item_poster_delete;
-            public ImageView image_view_item_poster_image ;
-            public RelativeLayout relative_layout_item_poster_delete ;
-            public PosterHolder(View itemView) {
-                super(itemView);
-                this.text_view_item_poster_title = (TextView) itemView.findViewById(R.id.text_view_item_poster_title);
-                this.year_poster = (TextView) itemView.findViewById(R.id.year_poster);
-                this.image_view_item_poster_image =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_image);
-                this.relative_layout_item_poster_delete =  (RelativeLayout) itemView.findViewById(R.id.relative_layout_item_poster_delete);
-                this.image_view_item_poster_delete =  (ImageView) itemView.findViewById(R.id.image_view_item_poster_delete);
-            }
-        }
+    }
     public class EmptyHolder extends RecyclerView.ViewHolder {
         public EmptyHolder(View itemView) {
             super(itemView);
@@ -375,9 +372,9 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
     @Override
     public int getItemViewType(int position) {
-            if ((posterList.get(position).getTypeView())==0){
-                return 1;
-            }
+        if ((posterList.get(position).getTypeView())==0){
+            return 1;
+        }
         return   posterList.get(position).getTypeView();
     }
 
@@ -404,56 +401,45 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             PrefManager prefManager= new PrefManager(activity);
 
             nativeAd = new NativeAd(activity,prefManager.getString("ADMIN_NATIVE_FACEBOOK_ID"));
-            nativeAd.setAdListener(new NativeAdListener() {
-                @Override
-                public void onMediaDownloaded(Ad ad) {
-                    // Native ad finished downloading all assets
-                    Log.e(TAG, "Native ad finished downloading all assets.");
-                }
-
-                @Override
-                public void onError(Ad ad, AdError adError) {
-                    // Native ad failed to load
-                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
-                }
-
-                @Override
-                public void onAdLoaded(Ad ad) {
-                    // Native ad is loaded and ready to be displayed
-                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
-                    // Race condition, load() called again before last ad was displayed
-                    if (nativeAd == null || nativeAd != ad) {
-                        return;
-                    }
-                   /* NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes()
-                            .setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark))
-                            .setTitleTextColor(Color.WHITE)
-                            .setDescriptionTextColor(Color.WHITE)
-                            .setButtonColor(Color.WHITE);
-
-                    View adView = NativeAdView.render(activity, nativeAd, NativeAdView.Type.HEIGHT_300, viewAttributes);
-
-                    LinearLayout nativeAdContainer = (LinearLayout) view.findViewById(R.id.native_ad_container);
-                    nativeAdContainer.addView(adView);*/
-                    // Inflate Native Ad into Container
-                    inflateAd(nativeAd,view);
-                }
-
-                @Override
-                public void onAdClicked(Ad ad) {
-                    // Native ad clicked
-                    Log.d(TAG, "Native ad clicked!");
-                }
-
-                @Override
-                public void onLoggingImpression(Ad ad) {
-                    // Native ad impression
-                    Log.d(TAG, "Native ad impression logged!");
-                }
-            });
-
-            // Request an ad
-            nativeAd.loadAd();
+//            nativeAd.setAdListener(new NativeAdListener() {
+//                @Override
+//                public void onMediaDownloaded(Ad ad) {
+//                    // Native ad finished downloading all assets
+//                    Log.e(TAG, "Native ad finished downloading all assets.");
+//                }
+//
+//                @Override
+//                public void onError(Ad ad, AdError adError) {
+//                    // Native ad failed to load
+//                    Log.e(TAG, "Native ad failed to load: " + adError.getErrorMessage());
+//                }
+//
+//                @Override
+//                public void onAdLoaded(Ad ad) {
+//                    // Native ad is loaded and ready to be displayed
+//                    Log.d(TAG, "Native ad is loaded and ready to be displayed!");
+//                    // Race condition, load() called again before last ad was displayed
+//                    if (nativeAd == null || nativeAd != ad) {
+//                        return;
+//                    }
+//                    inflateAd(nativeAd,view);
+//                }
+//
+//                @Override
+//                public void onAdClicked(Ad ad) {
+//                    // Native ad clicked
+//                    Log.d(TAG, "Native ad clicked!");
+//                }
+//
+//                @Override
+//                public void onLoggingImpression(Ad ad) {
+//                    // Native ad impression
+//                    Log.d(TAG, "Native ad impression logged!");
+//                }
+//            });
+//
+//            // Request an ad
+//            nativeAd.loadAd();
         }
 
         private void inflateAd(NativeAd nativeAd,View view) {
@@ -469,8 +455,8 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             // Add the AdChoices icon
             LinearLayout adChoicesContainer = view.findViewById(R.id.ad_choices_container);
-            //AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
-            //adChoicesContainer.addView(adChoicesView, 0);
+//            AdChoicesView adChoicesView = new AdChoicesView(activity, nativeAd, true);
+//            adChoicesContainer.addView(adChoicesView, 0);
 
             // Create native UI using the ad metadata.
             MediaView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
@@ -684,7 +670,7 @@ public class PosterAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         if (!facebookInterstitialAd.isAdLoaded())
             facebookInterstitialAd.loadAd();
-        }
+    }
     private void requestAdmobInterstitial() {
         if (admobInterstitialAd==null){
             PrefManager prefManager= new PrefManager(activity);
