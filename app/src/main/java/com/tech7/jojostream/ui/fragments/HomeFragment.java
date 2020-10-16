@@ -1,6 +1,5 @@
 package com.tech7.jojostream.ui.fragments;
 
-
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import com.orhanobut.hawk.Hawk;
 import com.tech7.jojostream.Provider.PrefManager;
 import com.tech7.jojostream.R;
@@ -97,8 +95,8 @@ public class HomeFragment extends Fragment {
                         dataList.add(sliodeData);
                     }
                     if (response.body().getChannels().size()>0){
-                       Data channelData = new Data();
-                       channelData.setChannels(response.body().getChannels());
+                        Data channelData = new Data();
+                        channelData.setChannels(response.body().getChannels());
                         dataList.add(channelData);
                     }
                     if (response.body().getActors().size()>0){
@@ -150,11 +148,11 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-   private void showLoadingView(){
-       linear_layout_load_home_fragment.setVisibility(View.VISIBLE);
-       linear_layout_page_error_home_fragment.setVisibility(View.GONE);
-       recycler_view_home_fragment.setVisibility(View.GONE);
-   }
+    private void showLoadingView(){
+        linear_layout_load_home_fragment.setVisibility(View.VISIBLE);
+        linear_layout_page_error_home_fragment.setVisibility(View.GONE);
+        recycler_view_home_fragment.setVisibility(View.GONE);
+    }
     private void showListView(){
         linear_layout_load_home_fragment.setVisibility(View.GONE);
         linear_layout_page_error_home_fragment.setVisibility(View.GONE);
@@ -185,7 +183,7 @@ public class HomeFragment extends Fragment {
         }
         return true;
     }
-    private void initViews() {
+    private void initViews(){
 
         boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
         if (!prefManager.getString("ADMIN_NATIVE_TYPE").equals("FALSE")){

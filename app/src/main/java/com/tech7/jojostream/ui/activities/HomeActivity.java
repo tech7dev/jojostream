@@ -1,5 +1,6 @@
 package com.tech7.jojostream.ui.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -58,6 +59,9 @@ import com.google.ads.consent.ConsentInfoUpdateListener;
 import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentStatus;
 import com.google.android.gms.cast.framework.CastButtonFactory;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -110,10 +114,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Dialog dialog;
     ConsentForm form;
 
-
     IInAppBillingService mService;
-
-
 
     private static final String LOG_TAG = "iabv3";
     // put your Google merchant id here (as stated in public profile of your Payments Merchant Center)
@@ -143,6 +144,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        updateAndroidSecurityProvider();
+
         getGenreList();
         initViews();
         initActions();
@@ -150,47 +154,68 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         firebaseSubscribe();
         initGDPR();
     }
-    private void initBuy() {
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
-
-        if(!BillingProcessor.isIabServiceAvailable(this)) {
-            //  showToast("In-app billing service is unavailable, please upgrade Android Market/Play to version >= 3.9.16");
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
         }
+    }
 
-        bp = new BillingProcessor(this, Global.MERCHANT_KEY, MERCHANT_ID, new BillingProcessor.IBillingHandler() {
-            @Override
-            public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-                //  showToast("onProductPurchased: " + productId);
-                Intent intent= new Intent(HomeActivity.this,SplashActivity.class);
-                startActivity(intent);
-                finish();
-                updateTextViews();
+    private void initBuy() {
+        try {
+            Intent serviceIntent =
+                    new Intent("com.android.vending.billing.InAppBillingService.BIND");
+            serviceIntent.setPackage("com.android.vending");
+            bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+
+
+            if (!BillingProcessor.isIabServiceAvailable(this)) {
+                //  showToast("In-app billing service is unavailable, please upgrade Android Market/Play to version >= 3.9.16");
             }
-            @Override
-            public void onBillingError(int errorCode, @Nullable Throwable error) {
-                // showToast("onBillingError: " + Integer.toString(errorCode));
-            }
-            @Override
-            public void onBillingInitialized() {
-                //  showToast("onBillingInitialized");
-                readyToPurchase = true;
-                updateTextViews();
-            }
-            @Override
-            public void onPurchaseHistoryRestored() {
-                // showToast("onPurchaseHistoryRestored");
-                for(String sku : bp.listOwnedProducts())
-                    Log.d(LOG_TAG, "Owned Managed Product: " + sku);
-                for(String sku : bp.listOwnedSubscriptions())
-                    Log.d(LOG_TAG, "Owned Subscription: " + sku);
-                updateTextViews();
-            }
-        });
-        bp.loadOwnedPurchasesFromGoogle();
+
+            bp = new BillingProcessor(this, Global.MERCHANT_KEY, MERCHANT_ID, new BillingProcessor.IBillingHandler() {
+                @Override
+                public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+                    //  showToast("onProductPurchased: " + productId);
+                    Intent intent = new Intent(HomeActivity.this, SplashActivity.class);
+                    startActivity(intent);
+                    finish();
+                    updateTextViews();
+                }
+
+                @Override
+                public void onBillingError(int errorCode, @Nullable Throwable error) {
+                    // showToast("onBillingError: " + Integer.toString(errorCode));
+                }
+
+                @Override
+                public void onBillingInitialized() {
+                    //  showToast("onBillingInitialized");
+                    readyToPurchase = true;
+                    updateTextViews();
+                }
+
+                @Override
+                public void onPurchaseHistoryRestored() {
+                    // showToast("onPurchaseHistoryRestored");
+                    for (String sku : bp.listOwnedProducts())
+                        Log.d(LOG_TAG, "Owned Managed Product: " + sku);
+                    for (String sku : bp.listOwnedSubscriptions())
+                        Log.d(LOG_TAG, "Owned Subscription: " + sku);
+                    updateTextViews();
+                }
+            });
+            bp.loadOwnedPurchasesFromGoogle();
+        }catch (Exception ex) {
+        }
     }
     private void updateTextViews() {
         PrefManager prf= new PrefManager(getApplicationContext());

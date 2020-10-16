@@ -3,13 +3,15 @@ package com.tech7.jojostream.ui.activities;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.tech7.jojostream.R;
 import com.tech7.jojostream.config.Global;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,9 @@ public class YoutubeActivity extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
+
+        updateAndroidSecurityProvider();
+
         Bundle bundle = getIntent().getExtras() ;
         youtubeUrl = bundle.getString("url");
 
@@ -56,6 +61,21 @@ public class YoutubeActivity extends YouTubeBaseActivity {
         };
         video_youtube_player.initialize(Global.Youtube_Key,onInitializedListinner);
     }
+
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        }
+    }
+
     public class YouTubeHelper {
 
         final String youTubeUrlRegEx = "^(https?)?(://)?(www.)?(m.)?((youtube.com)|(youtu.be))/";
@@ -89,8 +109,10 @@ public class YoutubeActivity extends YouTubeBaseActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState )
     {
-        super.onSaveInstanceState(outState);
-        outState.putInt("current",youTubePlayer.getCurrentTimeMillis());
+        try {
+            super.onSaveInstanceState(outState);
+            outState.putInt("current", youTubePlayer.getCurrentTimeMillis());
+        }catch (Exception ex){}
     }
 
     @Override

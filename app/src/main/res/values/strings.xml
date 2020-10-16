@@ -44,8 +44,8 @@
     <string name="search_about_actors">Recherche un film, une série, une chaine TV</string>
     <string name="account_disabled">Ce compte a été désactivé</string>
     <string name="operation_progress">Opérations en cours, veuillez patienter.</string>
-    <string name="get_this_movie_here">Obtenez ce film à partir du lien ci-dessous:</string>
-    <string name="get_this_tv_show_here">Obtenez cette série à partir du lien ci-dessous:</string>
+    <string name="get_this_movie_here">Regardez ce film à partir du lien ci-dessous:</string>
+    <string name="get_this_tv_show_here">Regardez cette série à partir du lien ci-dessous:</string>
 
     <string name="get_this_serie_here">Obtenez plus de séries télévisées ici</string>
     <string name="get_this_channel_here">Obtenez cette chaîne à partir du lien ci-dessous</string>

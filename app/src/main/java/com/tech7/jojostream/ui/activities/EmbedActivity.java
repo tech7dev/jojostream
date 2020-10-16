@@ -20,10 +20,18 @@ import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.InterstitialAd;
 
 import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.tech7.jojostream.Provider.PrefManager;
 import com.tech7.jojostream.R;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.SSLContext;
 
 public class EmbedActivity extends AppCompatActivity {
     private WebView webView;
@@ -43,6 +51,9 @@ public class EmbedActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        updateAndroidSecurityProvider();
+
         // Initialize the Audience Network SDK
         AudienceNetworkAds.initialize(this);
         interstitialAd = new InterstitialAd(this,"785965338862398_785982148860717");
@@ -81,6 +92,20 @@ public class EmbedActivity extends AppCompatActivity {
         //display facebookAds
         showIntertistielAds();
 
+    }
+
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showIntertistielAds() {

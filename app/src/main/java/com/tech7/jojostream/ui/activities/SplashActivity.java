@@ -29,6 +29,9 @@ import com.android.vending.billing.IInAppBillingService;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.Constants;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.greenfrvr.rubberloader.RubberLoaderView;
 import com.tech7.jojostream.Provider.PrefManager;
 import com.tech7.jojostream.R;
@@ -39,7 +42,6 @@ import com.tech7.jojostream.entity.ApiResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -73,7 +75,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
+        updateAndroidSecurityProvider();
 
         prf= new PrefManager(getApplicationContext());
         initBuy();
@@ -112,6 +114,19 @@ public class SplashActivity extends AppCompatActivity {
         prf.setString("ADMIN_NATIVE_TYPE","FALSE");
     }
 
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void checkAccount() {
 
@@ -220,7 +235,7 @@ public class SplashActivity extends AppCompatActivity {
                             update_text_view_updates.setText(featurs_update);
                             AlertDialog.Builder builder;
                             builder = new AlertDialog.Builder(SplashActivity.this);
-                            builder.setTitle("New Update")
+                            builder.setTitle("Nouvelle Mise à jour")
                                     //.setMessage(response.body().getValue())
                                     .setView(v)
                                     .setPositiveButton(getResources().getString(R.string.update_now), new DialogInterface.OnClickListener() {

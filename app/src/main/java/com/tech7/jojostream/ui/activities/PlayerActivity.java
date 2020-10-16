@@ -21,6 +21,9 @@ import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.Session;
 import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.SessionManagerListener;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.tech7.jojostream.R;
 import com.tech7.jojostream.cast.ExpandedControlsActivity;
 import com.tech7.jojostream.event.CastSessionEndedEvent;
@@ -28,7 +31,6 @@ import com.tech7.jojostream.event.CastSessionStartedEvent;
 import com.tech7.jojostream.ui.player.CustomPlayerFragment;
 
 import org.greenrobot.eventbus.EventBus;
-
 
 /**
  * Created by Thomas Ostrowski
@@ -129,6 +131,8 @@ public class PlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        updateAndroidSecurityProvider();
+
         mSessionManager = CastContext.getSharedInstance(this).getSessionManager();
 
         super.onCreate(savedInstanceState);
@@ -162,6 +166,20 @@ public class PlayerActivity extends AppCompatActivity {
             launchFragment(customPlayerFragment);
         }
 
+    }
+
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

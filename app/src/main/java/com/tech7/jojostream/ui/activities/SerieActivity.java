@@ -84,7 +84,10 @@ import com.google.android.gms.cast.framework.Session;
 import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.images.WebImage;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jackandphantom.blurimage.BlurImage;
 import com.orhanobut.hawk.Hawk;
@@ -119,9 +122,13 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.net.ssl.SSLContext;
 
 
 public class SerieActivity extends AppCompatActivity implements PlaylistDownloader.DownloadListener {
@@ -280,8 +287,10 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
         mSessionManager = CastContext.getSharedInstance(this).getSessionManager();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie);
-        mCastContext = CastContext.getSharedInstance(this);
 
+        updateAndroidSecurityProvider();
+
+        mCastContext = CastContext.getSharedInstance(this);
 
         initView();
         initAction();
@@ -296,6 +305,21 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
         loadRewardedVideoAd();
         initBuy();
     }
+
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(getApplicationContext());
+//            SSLContext sslContext;
+//            sslContext = SSLContext.getInstance("TLSv1.2");
+//            sslContext.init(null, null, null);
+//            sslContext.createSSLEngine();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadRewardedVideoAd() {
         PrefManager     prefManager= new PrefManager(getApplicationContext());
 
@@ -368,46 +392,52 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
 
     }
     private void initBuy() {
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+        try {
+            Intent serviceIntent =
+                    new Intent("com.android.vending.billing.InAppBillingService.BIND");
+            serviceIntent.setPackage("com.android.vending");
+            bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
 
-        if(!BillingProcessor.isIabServiceAvailable(this)) {
-            //  showToast("In-app billing service is unavailable, please upgrade Android Market/Play to version >= 3.9.16");
+            if (!BillingProcessor.isIabServiceAvailable(this)) {
+                //  showToast("In-app billing service is unavailable, please upgrade Android Market/Play to version >= 3.9.16");
+            }
+
+            bp = new BillingProcessor(this, Global.MERCHANT_KEY, MERCHANT_ID, new BillingProcessor.IBillingHandler() {
+                @Override
+                public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+                    //  showToast("onProductPurchased: " + productId);
+                    Intent intent = new Intent(SerieActivity.this, SplashActivity.class);
+                    startActivity(intent);
+                    finish();
+                    updateTextViews();
+                }
+
+                @Override
+                public void onBillingError(int errorCode, @Nullable Throwable error) {
+                    // showToast("onBillingError: " + Integer.toString(errorCode));
+                }
+
+                @Override
+                public void onBillingInitialized() {
+                    //  showToast("onBillingInitialized");
+                    readyToPurchase = true;
+                    updateTextViews();
+                }
+
+                @Override
+                public void onPurchaseHistoryRestored() {
+                    // showToast("onPurchaseHistoryRestored");
+                    for (String sku : bp.listOwnedProducts())
+                        Log.d(LOG_TAG, "Owned Managed Product: " + sku);
+                    for (String sku : bp.listOwnedSubscriptions())
+                        Log.d(LOG_TAG, "Owned Subscription: " + sku);
+                    updateTextViews();
+                }
+            });
+            bp.loadOwnedPurchasesFromGoogle();
+        }catch (Exception ex) {
         }
-
-        bp = new BillingProcessor(this, Global.MERCHANT_KEY, MERCHANT_ID, new BillingProcessor.IBillingHandler() {
-            @Override
-            public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-                //  showToast("onProductPurchased: " + productId);
-                Intent intent= new Intent(SerieActivity.this,SplashActivity.class);
-                startActivity(intent);
-                finish();
-                updateTextViews();
-            }
-            @Override
-            public void onBillingError(int errorCode, @Nullable Throwable error) {
-                // showToast("onBillingError: " + Integer.toString(errorCode));
-            }
-            @Override
-            public void onBillingInitialized() {
-                //  showToast("onBillingInitialized");
-                readyToPurchase = true;
-                updateTextViews();
-            }
-            @Override
-            public void onPurchaseHistoryRestored() {
-                // showToast("onPurchaseHistoryRestored");
-                for(String sku : bp.listOwnedProducts())
-                    Log.d(LOG_TAG, "Owned Managed Product: " + sku);
-                for(String sku : bp.listOwnedSubscriptions())
-                    Log.d(LOG_TAG, "Owned Subscription: " + sku);
-                updateTextViews();
-            }
-        });
-        bp.loadOwnedPurchasesFromGoogle();
     }
 
     private void updateTextViews() {
@@ -1664,7 +1694,9 @@ public class SerieActivity extends AppCompatActivity implements PlaylistDownload
         }
     }
     public void share(){
-        String shareBody = poster.getTitle()+"\n\n"+getResources().getString(R.string.get_this_serie_here)+"\n"+ Global.API_URL.replace("api","share")+ poster.getId()+".html";
+        //String shareBody = poster.getTitle()+"\n\n"+getResources().getString(R.string.get_this_serie_here)+"\n"+ Global.API_URL.replace("api","share")+ poster.getId()+".html";
+        final String appPackageName = getApplication().getPackageName();
+        String shareBody = poster.getTitle()+"\n\n"+getResources().getString(R.string.get_this_serie_here)+"\n"+ "http://play.google.com/store/apps/details?id=" + appPackageName;
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
